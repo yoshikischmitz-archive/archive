@@ -1,0 +1,670 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Thread-based chat app</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f24361b8-8c5d-47e5-ad5c-5e3872a6a2ab" class="page sans"><header><h1 class="page-title">Thread-based chat app</h1></header><div class="page-body"><p id="343fcb0c-fbd4-4cfa-9a2d-50ae1a5325d2" class="">This was a concept I was developing for a thread-based chat app.</p><figure id="24c49a37-c157-4b81-9e80-6d4d4231aa00" class="image"><a href="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/01.png"><img style="width:1670px" src="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/01.png"/></a></figure><figure id="2143db25-b17c-486f-a851-36ddbb9c5890" class="image"><a href="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/03.png"><img style="width:1662px" src="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/03.png"/></a></figure><div id="e6c2a744-59c5-4a76-a4fc-26bad0c11f7a" class="column-list"><div id="d848e9c9-6ce3-48f2-99f4-20535fca773b" style="width:50.000000000000014%" class="column"><figure id="932581ab-2efe-4b4b-80b5-f1a9ac6298cc" class="image"><a href="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/04.png"><img style="width:1662px" src="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/04.png"/></a></figure></div><div id="b7a138c8-1aa6-4495-9e36-f8cc8a0f7413" style="width:50%" class="column"><figure id="87c1654e-e7d3-4705-b9f3-f8e1464d509b" class="image"><a href="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/05.png"><img style="width:1662px" src="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/05.png"/></a></figure></div></div><p id="f2a7a9fe-a600-4c78-a17a-32fb38e98542" class="">
+</p><figure id="375e862a-d7e7-4c0c-a2d0-8386da64fe11" class="image"><a href="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/Untitled.png"><img style="width:1440px" src="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/Untitled.png"/></a></figure><h1 id="d737ddfb-6099-46d3-9556-edd5220add4c" class="">Benefits:</h1><ul id="2d3e43bd-ab6a-436e-ab04-a076ca592569" class="bulleted-list"><li style="list-style-type:disc">Better Communication:<ul id="97a545ce-cd93-4b51-a583-300fbc962aa5" class="bulleted-list"><li style="list-style-type:circle">Deeper</li></ul><ul id="d42b8d4b-c83f-4c04-a67e-d0a808da91f8" class="bulleted-list"><li style="list-style-type:circle">Focused</li></ul><ul id="fca5b860-3bdb-4be4-b5df-385923562750" class="bulleted-list"><li style="list-style-type:circle">Organized</li></ul><ul id="dc09b3bc-73d4-4113-9f6b-0d52fd74808c" class="bulleted-list"><li style="list-style-type:circle">Uninterrupted</li></ul></li></ul><ul id="3b14b7bb-4dfe-4329-aad6-1c90ba860b82" class="bulleted-list"><li style="list-style-type:disc">Zero friction knowledge base<ul id="228e54e5-75c0-4ff9-9733-b55f4259fb67" class="bulleted-list"><li style="list-style-type:circle">posts are meant to be written in long-form, so you can write them the same way you would a blog post or wiki entry</li></ul><ul id="a0ae4d9a-e76a-4d46-aaa5-27f9c54db554" class="bulleted-list"><li style="list-style-type:circle">Q&amp;As record which answer was the best and show the entire process of problem resolution in the question and comments</li></ul></li></ul><h1 id="7c5bdc0b-ee14-4f13-a838-39d4a69a2856" class="">Proof of need:</h1><ul id="b372905e-fa98-45de-b675-b8c6c4727253" class="bulleted-list"><li style="list-style-type:disc"><a href="https://zulipchat.com/">https://zulipchat.com/</a></li></ul><ul id="fed69b78-82ec-449e-a474-286776fb69c9" class="bulleted-list"><li style="list-style-type:disc"><a href="http://www.businessinsider.com/i-used-to-be-obsessed-with-slack-but-now-im-dropping-it-completely-heres-why-2016-3">http://www.businessinsider.com/i-used-to-be-obsessed-with-slack-but-now-im-dropping-it-completely-heres-why-2016-3</a></li></ul><ul id="9dd4afe0-4719-452e-98ce-61c3674b2362" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.quora.com/What-are-some-of-the-issues-with-Slack">https://www.quora.com/What-are-some-of-the-issues-with-Slack</a></li></ul><ul id="b2bc626e-11a2-454a-959b-5508e986db2b" class="bulleted-list"><li style="list-style-type:disc"><a href="https://news.ycombinator.com/item?id=16355454">https://news.ycombinator.com/item?id=16355454</a></li></ul><ul id="bdd5cd69-f0c0-470f-97ba-02088387cadc" class="bulleted-list"><li style="list-style-type:disc"><a href="https://twitter.com/pixylayne/status/1008880260291624965">https://twitter.com/pixylayne/status/1008880260291624965</a></li></ul><ul id="55611a86-2d87-4a05-a3d7-39ae50b27d8e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://news.ycombinator.com/item?id=17374371">https://news.ycombinator.com/item?id=17374371</a></li></ul><h1 id="96247347-8302-4801-aade-2bf90606f345" class="">Forrest</h1><p id="9a43dda4-946a-44a8-8acc-a8e934318771" class="">Benefits:
+Knowledge retention
+Organized + focused discussion</p><p id="36059e87-1662-492c-b64b-689c5ab6ad0f" class="">Like Stack Overflow + Slack for efficient, organized teams.
+Turn your team’s chat into a knowledge base.
+The best parts of email and Slack combined.
+Bring focus and clarity to your team communications.
+Organized discussions for focused teams.
+Team communication without the noise.
+Increase the signal to noise ratio of your team chat.</p><p id="3f581d21-ddc1-464b-8a30-e429ac8e9cdb" class="">Use a font with interesting ligature between characters for the chat heads</p><p id="afd56af7-1e9a-4754-a13d-995b8dcf0df1" class="">
+</p><p id="a4feb698-c496-4dab-b4e8-d5fd1350fcfa" class="">Once upon a time there was___ Every day ____ One day___ Because of that___ Until Finally _____</p><p id="c7e882c5-8f99-45e0-bd6b-35bbcd67abee" class="">Once upon a time companies were using group chat for all of their communications</p><p id="8a173575-a3b8-4757-a79c-cce325b21e74" class="">Every day they would log into slack, talk and </p><h1 id="0057057f-956d-4f04-b2e8-78c450a57880" class="">Ideas</h1><ul id="3faf9016-3b8d-4c55-8efc-7d66103c79ee" class="bulleted-list"><li style="list-style-type:disc">Focus mode - make a discussion go full screen by double-clicking on the thread preview, or pressing a full-screen button on the thread reader</li></ul><ul id="9c54925a-c86e-4ca9-95b3-62d7e6b687d8" class="bulleted-list"><li style="list-style-type:disc">Follow Channels</li></ul><ul id="65af22ce-c503-4fb8-8bd1-ae4540bc0784" class="bulleted-list"><li style="list-style-type:disc">spotlight style shortcuts</li></ul><ul id="5b6b9eea-1f8f-41fd-9a1b-bd178d157195" class="bulleted-list"><li style="list-style-type:disc">reader mode - flip through old discussions and announcements that are deemed important</li></ul><ul id="d02f608d-782c-4df9-b850-f83850330277" class="bulleted-list"><li style="list-style-type:disc">tags</li></ul><figure id="8891aa0c-99e1-4291-8606-4d1281f5c621" class="link-to-page"><a href="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/Design%20Inspiration%208891aa0c99e1429186064d1281f5c621.html">Design Inspiration</a></figure><p id="5b1a1ee0-25da-42af-8662-21c3a9be5fc3" class="">
+</p><p id="005d92f2-18d6-4d0b-9120-9306bba13180" class="">Promotion tactics:</p><ul id="cfc7e50d-2c01-4ac1-8cca-a436850463d5" class="bulleted-list"><li style="list-style-type:disc">Get open source software communities to use it.<ul id="abf04f9c-2d79-45f1-b0b0-916c6c4934f7" class="bulleted-list"><li style="list-style-type:circle">Especially ones that decry the knowledge lost to chat rooms.</li></ul><ul id="58486832-64df-41a2-bc57-8ca0fc8873e6" class="bulleted-list"><li style="list-style-type:circle">Find people asking &quot;what should I use instead of slack&quot; on social media.</li></ul><p id="ffe3e632-0708-4d75-97d6-31d0d2ee424b" class="">slack bashing:<div class="indented"><p id="711d80b3-cc34-409c-862d-bcf2e6c9f8e3" class="">
+</p><p id="9ee36814-225b-4e30-9008-5ef8fd6fd9ce" class="">
+</p></div></p></li></ul><p id="de3bad56-9d4a-4b51-a0d7-253148fb06ce" class="">
+</p><p id="3fee3d5c-468a-4467-81ab-67508c8af514" class="">Delighting customers:</p><p id="50fed952-7f57-49be-99e7-836b1c1d10c8" class="">Have a design system built around zen calmness</p><p id="7bd0542c-e688-417b-8104-fbb260797cfc" class="">Make people reflect and think deeply</p><p id="b0ff0a07-a55b-4086-ad8c-fbc977761bc6" class="">Inject wisdom into the app</p><p id="7cd4b17b-2c07-409b-ab8e-e28aabb91f41" class="">Need to find where the zeitgesit is going regarding mood</p><p id="b01318b5-0d7a-4a21-a7f4-4fe42e4522a4" class="">ethereal</p><p id="1ad3ce02-e416-439c-bca8-76014cfcc668" class="">zen</p><p id="226a591d-df4e-41bd-ba5d-c99d3633a399" class="">elven</p><p id="9408c7dc-e3e8-4386-adf5-169d424a1e30" class="">calm</p><p id="97b99854-63bc-48ba-9261-371f1fcf5fb1" class="">but also cheeky </p><figure id="dde864b7-4fd3-498c-a8de-ae567ddb09d7" class="link-to-page"><a href="Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab/Team%20Discussion%20App%20Idea%20dde864b74fd3498ca8deae567ddb09d7.html">Team Discussion App Idea</a></figure></div></article></body></html>

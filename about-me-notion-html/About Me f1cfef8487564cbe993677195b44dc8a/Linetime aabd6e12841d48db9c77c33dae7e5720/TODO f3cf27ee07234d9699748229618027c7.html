@@ -1,0 +1,677 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>TODO</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f3cf27ee-0723-4d96-9974-8229618027c7" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">✅</span></div><h1 class="page-title">TODO</h1></header><div class="page-body"><h1 id="22ad9354-0bff-42d1-889d-793fe769b942" class="">Priority</h1><ul id="ebb89ed7-788e-4a71-b128-05e572e838d2" class="bulleted-list"><li style="list-style-type:disc">add a button for removing time chunks</li></ul><h1 id="6ab91a60-2310-440d-a492-bc7a36d6f7bb" class="">Backlog:</h1><ul id="71e0eb97-0a16-4160-a3e6-da959e4f0168" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">add note titles</span></li></ul><ul id="297a5dd3-9242-4e94-80a5-f49f80009a78" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Notifications on iPhone broken.</span></li></ul><ul id="e25e52c6-8a03-4d08-940e-58f97733d122" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">autoplay</span></li></ul><ul id="faa101c9-b6d2-4602-9459-6edf3886260c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">button for adding chunk at the end</span></li></ul><ul id="2be50b89-1113-401e-8920-05c6da0942ce" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">show when a chunk was completed</span></li></ul><ul id="94376b0d-1bd4-4c25-859c-9b0b490eff05" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">copy note to clipboard</span></li></ul><ul id="a5d0e0b7-3136-44ec-a257-e63adf7850d8" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">paste note from clipboard</span></li></ul><ul id="8895f43e-1a06-48af-a96e-b8720a1f42b1" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">add notification toggling to the document</span></li></ul><ul id="2d5c48ff-111c-4868-bc77-560d8199b9ec" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">undoing things</span></li></ul><ul id="0bdb47f8-9556-4e4d-ba05-212e919986b6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">sound doesn’t play on Chrome</span></li></ul><ul id="3ce602c2-bcfe-4ea7-a620-288331fdaffa" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">need to refresh the sidebar periodically so the times update</span></li></ul><ul id="cacc57ac-af7b-4ca2-af1f-4a17f95027b9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">when focus changes after a new note was created without any contents, we should delete the new note.</span></li></ul><ul id="5fb3c4b4-5350-4e9b-88e8-bf06f1773e06" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">ignore leading whitespace for timer entry</span></li></ul><h1 id="45a05774-5b7b-474b-90b5-a324534a1077" class="">Done:</h1><ul id="3f1284f1-9ef6-47eb-b583-79d7220a94e6" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">extract three reducers, one that handles chunks, one that handles ui, and one that handles notes</span></li></ul><ul id="72071328-6bbe-4e8b-98c0-cb3b61a5c28b" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Offline storage</span><ul id="75c78c6a-c542-4e01-a1b5-29b23bfe7433" class="bulleted-list"><li style="list-style-type:disc">needs to work with editorState</li></ul></li></ul><ul id="cc2e91b1-244e-4490-9d96-07c63657eebb" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">get key back into chunks</span></li></ul><ul id="8c80f4da-c4c3-41b8-a725-cf14954cbb42" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">abbreviate time on mobile</span></li></ul><ul id="72c58ce2-756c-4572-9e87-5f66c173621d" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">don’t show timelines when moving</span></li></ul><ul id="c59405b3-bbcb-46d8-98fd-cc6e04f7f65b" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">get sidebar working on mobile</span></li></ul><ul id="6007c694-2ff5-4dae-b085-67aac21c19d3" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">time of last edit at the right of the title in the sidebar</span></li></ul><ul id="aaba0451-dc57-4a6a-94ec-df62446cbec9" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">reorder chunks</span></li></ul><ul id="6812c7e2-a4d9-4f77-8d49-2a156b4968c7" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">center the borders
+maybe use css border images?</span></li></ul><ul id="f2bc2245-0a9c-4e9c-9484-2d9f1a21f666" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">There is a sidebar on the left that lists all of the user’s notes</span><ul id="a503f9be-2890-409a-a401-d31bfd735f0f" class="bulleted-list"><li style="list-style-type:disc">The notes are sorted by when they were last edited<ul id="d0b5fc54-ec10-443d-8f2d-fe327767aa53" class="bulleted-list"><li style="list-style-type:circle">updateChunk also update’s the last edited of the note</li></ul><ul id="e0e0afff-7cfa-4c84-ba8a-a1376dd3029a" class="bulleted-list"><li style="list-style-type:circle">this should only trigger when the content changes:
+<a href="https://github.com/facebook/draft-js/issues/830#issuecomment-264185874">Is there a way to distinguish what changed in onChange callback? · Issue #830 · facebook/draft-js · GitHub</a></li></ul></li></ul><ul id="93736e49-4b01-4f23-a52b-91fa4fc1800f" class="bulleted-list"><li style="list-style-type:disc">The currently selected note is highlighted</li></ul><ul id="b3dc116a-bdb5-484d-8249-eb158ebbfeda" class="bulleted-list"><li style="list-style-type:disc">The notes should show their first chunk’s content, clipped to the space available, as well as a preview of the rest of the contents.</li></ul><ul id="050831e2-f46e-46d1-b49b-eea198b2ccdf" class="bulleted-list"><li style="list-style-type:disc">when you click on an item in this sidebar, the state should change the selected note to be the clicked note.</li></ul></li></ul><ul id="f8661652-f232-42ca-9b2e-3aaf3984a12c" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">When you press backspace at the beginning of a chunk, to edit the interval of that chunk, and the chunk gets merged up, the cursor is at the beginning of the chunk. The cursor should be at the same place.</span></li></ul><ul id="904fddf3-a651-45b4-954f-b202b2cab9a5" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">The first line should be bold</span></li></ul><ul id="6d0fcffb-cc6b-457d-bfed-05f2d7606564" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">get focus change working on up and down arrows</span><ul id="4653c469-d18b-4291-8823-403abb032c27" class="bulleted-list"><li style="list-style-type:disc">make sure focus is at the end of the editor</li></ul></li></ul><ul id="78164f79-01ad-4061-819d-1108e0c81b68" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">fix add chunk focus issue</span></li></ul><ul id="20b0dbb7-2f34-4ce2-a4cb-0b28641e527b" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">get the default bank slate working</span><ul id="7cb9c8f0-b9e8-43c8-b1af-7feb626ae6bf" class="bulleted-list"><li style="list-style-type:disc">Editing the current time doesn’t work on initial load.</li></ul></li></ul><ul id="153c8197-aaed-46b3-b299-c43c8b626aa7" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">button to enable notifications</span></li></ul><ul id="bf4ed17b-2415-48a5-b776-936ef5b2cf89" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">focus on chrome is broken
+for some reason you can’t return the focus back to any element
+The problem was this function in DisplayChunk.js:</span></li></ul><ul id="0d875649-68e0-4b27-bcba-5b2f8f896d65" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">componentDidUpdate(){
+      if(this.props.focused){   
+        this.editorRef.focus()    
+      }   
+    }</span></li></ul><ul id="ace0ab4a-7553-4e3e-b545-dece16258d6a" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Parse each line and check if the first line has square brackets inside. If there are, then extract the contents of the brackets and figure out what time the text represents.</span></li></ul><ul id="e4c59fb1-91da-489e-b8b6-24e4a02db396" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Create an entity for each timer</span><ul id="17fb6483-322d-46fc-9c96-73a79fe23415" class="bulleted-list"><li style="list-style-type:disc">make sure the selection only covers the area of the timer itself</li></ul></li></ul><ul id="3ef5fa7d-303a-4cbd-92af-0e954bd7e0d9" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Start the timers when the user hits the start button</span></li></ul><ul id="76f9ae88-ba69-421e-b695-b0669ef9a839" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">discover the time entities</span></li></ul><ul id="089167a7-58a1-442d-affd-a45271a110c1" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">add them to a list</span></li></ul><ul id="3d1f8045-0b95-4be2-ac06-7f24ca447f59" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">go through the list, sequentially creating a timer for each item.</span></li></ul><ul id="2fa40c14-4b4a-4459-9862-2ae4419f2b13" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">play and pause</span></li></ul><ul id="c22a7d8b-796a-402d-82de-3bfaa366e0e8" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">notification + sound when you complete an item</span></li></ul><ul id="dfeaca76-09ca-4b85-ae5c-3a8c1fa444ba" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Convert SPC handler into keybindingfn</span></li></ul><ul id="e7dcbbcb-7a19-4b23-b5ae-f32d97eba294" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Emit Backspace action if we’re at the beginning of a chunk</span></li></ul><ul id="11a3e65a-581f-41f5-a1c7-597831607994" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Backspace:</span><ul id="d3faa5ba-88a6-428a-91ec-ced3287f4ad9" class="bulleted-list"><li style="list-style-type:disc">Merge chunk up<ol type="1" id="1d827d5e-baa4-42e5-b3a8-a5d2a8675280" class="numbered-list" start="1"><li>Modifier.replaceText to insert the interval text into the content state
+And append that chunk’s blocks to the chunk above it.</li></ol><ol type="1" id="f2a8e440-5a7f-4ae8-8199-79fb7a3d5306" class="numbered-list" start="2"><li>Find the chunk above the current one. Get its blocks.</li></ol><ol type="1" id="b4a69bf7-23d2-4f4f-83c6-edf9824efa55" class="numbered-list" start="3"><li>Get the blocks from the the content state returned from Modifier</li></ol><ol type="1" id="2b6a1729-a077-4807-af45-2acc4f46ca8a" class="numbered-list" start="4"><li>Combine those blocks into an array.
+Delete the current block</li></ol><ol type="1" id="e87b749a-145b-4705-b0ea-d46d51c9edc3" class="numbered-list" start="5"><li>Remove the chunk from the notes’s chunk array</li></ol><ol type="1" id="06804eb9-2b67-4dfd-a940-dae317bf5288" class="numbered-list" start="6"><li>Delete it from the block object</li></ol><ol type="1" id="f6ba218e-1ba7-400c-8f4b-3d337267f2b5" class="numbered-list" start="7"><li>Return the new state</li></ol></li></ul></li></ul><ul id="15eac226-c975-49e3-99ef-b618313824c4" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Get rendering of the basic state working:</span><ul id="7df29500-2db8-4df9-afbf-0f189a595417" class="bulleted-list"><li style="list-style-type:disc">Install redux</li></ul><ul id="d3bb9efa-36ae-4617-b225-1a1dff99af8f" class="bulleted-list"><li style="list-style-type:disc">Set up basic state</li></ul><ul id="aac6bf8b-fc1c-40d9-b910-28f86246e4cf" class="bulleted-list"><li style="list-style-type:disc">create reducers</li></ul><ul id="8aef1f80-09de-406b-bef7-8b8fcd6fdc09" class="bulleted-list"><li style="list-style-type:disc">create actions</li></ul><ul id="f119d0e5-c731-4c4d-9fee-55d0667b18d9" class="bulleted-list"><li style="list-style-type:disc">Create containers and components for each level of the hierarchy</li></ul></li></ul><ul id="01a58669-a103-47d6-ba5b-10dafe3b2ce2" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Adding new chunks.
+When you press space at the end of an interval declaration it creates a new chunk
+Use <code>handleBeforeInput</code> to detect the space event
+Then we need to clear the contentState of the text before the cursor.
+draftRemovalDirection: ‘backward’
+It should carry over the content that comes after it too.</span></li></ul><ul id="6ad91d9c-562f-405b-ac32-69b9034cd0c5" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Change focus to the new chunk after creation.</span></li></ul><ul id="467b0789-ba0e-4643-8918-19e0f99259d1" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Fix space not working when you reenter a backspaced item
+this was happening because getText() is based off of the text at the beginning of the block itself, without accounting for newlines</span></li></ul><ul id="5fc91c73-5e86-4795-bd47-7b81b4de65f4" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Completed items should have a blue border on the left</span></li></ul><ul id="865cc568-cd6c-47f5-987d-fba56248a366" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Get the player working
+The player has a play button, pause button, and a countdown.
+The player is at the current chunk. Originally this is the first chunk.
+When you press play, the player starts the countdown.
+When the player’s countdown ends, the chunk should be marked complete, and the current chunk should be forwarded.</span></li></ul><ul id="4dabb653-b208-4e48-9a78-d467b9258d42" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">[40 minutes] deploy to google cloud
+<a href="https://medium.com/google-cloud/how-to-deploy-a-static-react-site-to-google-cloud-platform-55ff0bd0f509">How to deploy a static React site to Google Cloud Platform</a></span><ul id="487d85a1-a726-40c8-9a6c-c7b413357da7" class="bulleted-list"><li style="list-style-type:disc">[15 minutes] make a build of the site<ul id="3e9f9f6f-5194-47bd-a84a-e41a1dc9969c" class="bulleted-list"><li style="list-style-type:circle">research how to make a build</li></ul></li></ul><ul id="0b1db8f2-69fe-4acd-8696-c964f74c0f7d" class="bulleted-list"><li style="list-style-type:disc">[15 minutes] setup bucket<ul id="374aa67a-7733-4701-9b16-4f303822c645" class="bulleted-list"><li style="list-style-type:circle">make a bucket</li></ul><ul id="af2d01ad-754d-437a-af42-9e97eaf46d67" class="bulleted-list"><li style="list-style-type:circle">[10 minutes] push build to the instance</li></ul></li></ul><ul id="ad03678f-a48c-49ec-b579-b2a925ad934c" class="bulleted-list"><li style="list-style-type:disc">remove plugin code in production</li></ul></li></ul></div></article></body></html>

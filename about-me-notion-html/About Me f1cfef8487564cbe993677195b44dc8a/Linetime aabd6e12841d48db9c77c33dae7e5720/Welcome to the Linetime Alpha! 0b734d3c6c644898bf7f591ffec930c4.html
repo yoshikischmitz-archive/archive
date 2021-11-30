@@ -1,0 +1,664 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Welcome to the Linetime Alpha!</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0b734d3c-6c64-4898-bf7f-591ffec930c4" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/woodcuts_14.jpg" style="object-position:center 40.449999999999996%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">⏲</span></div><h1 class="page-title">Welcome to the Linetime Alpha!</h1></header><div class="page-body"><p id="f4478ece-62e5-4460-9c13-8e6c94dc90ec" class="">Thanks for trying out Linetime! Before you get started, please note that Linetime is still in an early alpha release. A lot of features are missing and things might be broken. Please email yoshikischmitz@outlook.com with any issues you notice.</p><p id="68e700d4-7d24-4fed-af18-f67f86938a3d" class="">
+</p><h1 id="cb694fd8-2661-474d-b6dd-cca2608bddf9" class="">Table of Contents</h1><ul id="0370a95e-a04b-4442-b499-49708c90f93a" class="bulleted-list"><li style="list-style-type:disc"><a href="">Introduction</a></li></ul><ul id="9e5f7fc3-8b65-4855-8124-832584d8c127" class="bulleted-list"><li style="list-style-type:disc"><a href="">Timer Syntax</a></li></ul><ul id="d70957f1-ad19-448b-bc9c-c482fb087b33" class="bulleted-list"><li style="list-style-type:disc"><a href="">Rearranging Timers</a></li></ul><ul id="36a2548a-d320-4c52-9499-628131cd05e7" class="bulleted-list"><li style="list-style-type:disc"><a href="">Starting The Timer</a></li></ul><ul id="6253fbbd-98fb-4d22-b1f3-d8e6036d2890" class="bulleted-list"><li style="list-style-type:disc"><a href="">Timer Controls</a></li></ul><ul id="8613c16d-cf1c-47b1-81c0-d044b3aff517" class="bulleted-list"><li style="list-style-type:disc"><a href="">Enabling Notifications</a></li></ul><h1 id="d630a337-d40d-47c8-97cd-4623e5dc9b9c" class="">Introduction</h1><p id="6bebcc93-43e0-40b6-899e-24f4ac9df4ef" class="">Linetime is an app for planning your time using timers. You quickly create timers by typing in a special syntax. Timers can have notes, and you can re-arrange them by dragging the associated interval. Linetime keeps track of the timers and completed items for you so you don&#x27;t need to juggle multiple apps.</p><p id="cd71cc75-76ec-4a1e-8289-1f0ba76bfd4a" class="">
+</p><figure id="36a93739-3607-4d83-8a42-449a99357979" class="image"><a href="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/Screenshot-2018-3-8_Line_Time.png"><img style="width:492px" src="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/Screenshot-2018-3-8_Line_Time.png"/></a></figure><p id="82c5836e-0ee8-48b2-8133-75d420bba624" class="">
+</p><p id="a165d37a-c644-4981-b474-0bce55634142" class=""><strong>Where are my notes stored?</strong></p><p id="634a142c-2b0d-4733-98f0-d86581119b6e" class="block-color-yellow_background">Notes are currently saved in your browser&#x27;s local storage. If you clear your offline data in your browser&#x27;s privacy menu, your notes will be lost.</p><h1 id="b6729bb2-06d5-4545-9ee8-fc9e8fb3d8e0" class="">Timer Syntax</h1><p id="6cbdc171-7627-43f8-adcf-6e51b484cc55" class="">To create a timer make sure you are at the beginning of a line. Then, type the time you want to spend on that task in square brackets, followed by <code>space:</code></p><figure id="f356dcae-3a18-47f3-81b9-7403a93fb9f3"><div class="source"><a href="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/timer.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cb939c50-8d2c-411d-8293-9591527510b9/timer.mov</a></div></figure><p id="8c782b8a-7b7b-41ca-991d-99e6d9902082" class="">
+</p><p id="8f85ffeb-de46-4520-8eaa-9d505bf6c43b" class="">Examples of valid intervals:</p><pre id="86017573-582b-45d4-bb02-3a289f3553a5" class="code"><code>[30 minutes]
+[1 hour and 20 minutes]
+[200 seconds]</code></pre><p id="4e322701-029d-4d50-b0ee-31c764f1890e" class="">
+</p><p id="63c2c825-0ef4-46af-bac2-e8a16fd9e7b4" class="block-color-yellow_background">Make sure you&#x27;re at the beginning of the line!</p><p id="b71a6a70-6be8-466e-bad2-b04e9646e277" class="">
+</p><h1 id="3b98d569-7b7d-4904-9bbd-021e0c25a4ad" class="">Rearranging Timers</h1><p id="473fda0c-e443-45f1-94a1-721960a52eb3" class="">To re-arrange a timer, click and drag the timer&#x27;s interval(i.e. text like <strong>25 minutes</strong> that appears to the left of the timeline). Then drop it inside of the document to the new place you want it to be.</p><figure id="d2accc80-b359-4380-a6ea-42fee01dd188"><div class="source"><a href="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/re-arranging-timers.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a8254236-7c09-44f1-b0b1-911e24300495/re-arranging-timers.mov</a></div></figure><h1 id="e2156283-1187-4991-a7ed-64a957481905" class="">Starting the timer</h1><p id="c69242a0-073e-4ea0-9955-2a0cc314f02f" class="">When you first add an interval, a button labeled <code>start</code> will appear at the bottom of your note. Press this button and it&#x27;ll start the timer.</p><figure id="63092de4-e90b-445e-95b7-62ea15394fbc" class="image"><a href="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/Screen_Shot_2018-03-08_at_15.44.46.png"><img style="width:468px" src="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/Screen_Shot_2018-03-08_at_15.44.46.png"/></a></figure><h1 id="65117d49-fa4e-43dc-8374-6d265ff2f75a" class="">Timer Controls</h1><p id="658ab440-4fed-4597-888d-590e155884b4" class="">The Timer controls are fairly straightforward and take their inspiration from video players:</p><figure id="e5e67296-6a65-4a52-9fa5-7af1dd67e826" class="image"><a href="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/Screen_Shot_2018-03-08_at_15.54.33.png"><img style="width:460px" src="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/Screen_Shot_2018-03-08_at_15.54.33.png"/></a></figure><h2 id="49f22e69-3832-4a6f-adf4-527f60007804" class="">Stop</h2><p id="ad8504e9-0fce-49e3-81d5-f382212ca886" class="">Stops the timer countdown, resetting the time.</p><h2 id="912e09ad-d758-44b1-a5cf-5b90d961d1de" class="">Pause</h2><p id="436d56ea-9f33-44e4-a40e-1bd9bfe81656" class="">Pauses the timer countdown without resetting the time.</p><h2 id="59bec4db-df8c-47a3-8f6b-fcae8940785f" class="">Skip</h2><p id="316f1aa0-fa30-40e5-8a17-e2cf22baed18" class="">Marks this item as complete, and starts the next item.</p><h1 id="57533af9-ba0f-4368-8745-fd92dc910ae5" class="">Enabling Notifications</h1><p id="8a971ebe-15c6-45b3-aefb-12e6fcd452ea" class="">For Linetime to send you notifications, it needs your explicit permission. You can give Linetime this permission by clicking on the text &quot;Enable Notifications&quot; at the top of the document. Your browser will then ask you to confirm you want notifications.</p><figure id="095d9e2f-059f-4d95-b453-ef0705d7ce9a" class="image"><a href="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/Screen_Shot_2018-03-08_at_15.45.20.png"><img style="width:616px" src="Welcome%20to%20the%20Linetime%20Alpha!%200b734d3c6c644898bf7f591ffec930c4/Screen_Shot_2018-03-08_at_15.45.20.png"/></a></figure><h1 id="727375a9-572d-4461-bec0-8b86dacc8cad" class="">Bugs, issues, problems</h1><p id="18c4fb90-fa06-4ad2-8a5b-3163ba6d0072" class="">Please contact yoshikischmitz@outlook.com with any issues you notice.</p></div></article></body></html>

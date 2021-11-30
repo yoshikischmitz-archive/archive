@@ -1,0 +1,668 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>About Me</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="981bd88e-9432-475f-adba-b3a71e53af12" class="page sans"><header><img class="page-cover-image" src="About%20Me%20f1cfef8487564cbe993677195b44dc8a/header.jpg" style="object-position:center 50%"/><h1 class="page-title">About Me</h1></header><div class="page-body"><p id="8d1adb85-facd-4bc9-8d36-09633866f4a1" class=""><a href="https://twitter.com/yoshikischmitz">@yoshikischmitz</a></p><p id="68686139-f44f-4d53-9f9d-4734de2b04ca" class="">Hi, I&#x27;m Yoshiki. I want us to reclaim the liberatory potential of computers. To that end, I am creating research prototypes and concepts of dynamic digital environments for authoring, exploring, communicating, and programming(and hopefully, break down the distinctions between all of these).</p><h1 id="5600adbf-909b-43b8-9b34-552e71a80afa" class="">Frontiers</h1><div id="07db3d2d-8ff8-4813-98d5-fc2fcecee862" class="column-list"><div id="a173b8c9-b56a-414f-82fc-c5bdc0ab9ab9" style="width:33.333333333333336%" class="column"><figure id="f1cfef84-8756-4cbe-9936-77195b44dc8a" class="image"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled.png"><img style="width:432px" src="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled.png"/></a><figcaption><a href="https://www.notion.so/Dango-b46c07f3dc224f968c768885abe70e70">Dango</a> </figcaption></figure></div><div id="4781775d-73ef-4b51-bb3a-3b64e82cebd0" style="width:33.33333333333333%" class="column"><figure id="8c3f259b-2017-4a29-a0bf-36f405d16284" class="image"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%201.png"><img style="width:336px" src="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%201.png"/></a><figcaption><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%20Comic%20a683c67833a145de915502b5991c3f6a.html">Untitled Comic</a> </figcaption></figure><p id="4968e393-5863-465a-b342-c102e0a6d999" class="">
+</p></div><div id="f944ee1b-c07c-4892-97d5-1d48ca99cc51" style="width:33.333333333333336%" class="column"><figure id="143c36bc-8dec-413e-9d5d-12c5641e0e06" class="image"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%202.png"><img style="width:336px" src="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%202.png"/></a><figcaption><a href="https://www.notion.so/Expanding-UI-OS-e58f65ad81d94fb187cc18275b22f68c">Expanding UI OS</a> </figcaption></figure></div></div><p id="515f1a7f-43bb-420d-aebb-010452ffdcce" class="">These are the questions I&#x27;m most excited about, you can click on them to see the beginnings of an answer:</p><ul id="e882829c-36b4-444f-b221-f8dd135a0fb3" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.notion.so/Expanding-UI-OS-e58f65ad81d94fb187cc18275b22f68c">What would an operating system that really respected individual autonomy look like?</a></li></ul><ul id="8b792a0f-54c9-4171-8313-a9261c74db0f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.notion.so/Dango-b46c07f3dc224f968c768885abe70e70">What if there weren&#x27;t any &quot;apps&quot;- just a single, highly flexible kind of digital document?</a></li></ul><ul id="84b84783-9bd4-46c5-abbe-979a51dea4f5" class="bulleted-list"><li style="list-style-type:disc"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Data%20Design%20Language%20353b5d0713dd44288e74329c8fac4f41.html">What if we could transform data into &quot;apps&quot; by directly manipulating the data itself?</a></li></ul><ul id="3809eb1d-e906-4d9c-9323-7c2461abb3d0" class="bulleted-list"><li style="list-style-type:disc"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/File%20browser%20window%20manager%20hybrid%2044b61414b822473e8e04f8d1bd4dca21.html">What if &quot;window management&quot; and &quot;file management&quot; were unified?</a></li></ul><ul id="6c4a1cfc-c1cc-40a6-8f65-55e1e2842860" class="bulleted-list"><li style="list-style-type:disc"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%20Comic%20a683c67833a145de915502b5991c3f6a.html">What if your personal web data was continuous with your desktop? </a></li></ul><p id="509ff7aa-5dec-486c-9f78-383a3cbac8cc" class="">
+</p><p id="86bcc0ac-d71c-4d58-a2c0-2970bb6058a7" class="">I also have a list of random ideas you can check out: </p><figure id="acb845de-7634-4c14-9447-31d1b712053e" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Random%20Ideas%20acb845de76344c14944731d1b712053e.html">Random Ideas</a></figure><p id="1dcb9bb9-3403-4f39-ac15-08c647af1f83" class="">
+</p><h1 id="ea963e67-e968-40ba-a309-7fe9b75fa3f0" class="">Fun!</h1><p id="e02839e0-cdbf-4a3f-93a8-99862191d531" class="">Art and toys I made that make me happy.</p><div id="fe8b3551-9598-42e4-816f-ea8eeaf2e51b" class="column-list"><div id="34fc0eac-c56d-47bd-b0b0-6e55d06c8542" style="width:25%" class="column"><figure id="af73ac5a-b604-4e99-9914-143634e8fae8" class="image"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%203.png"><img style="width:432px" src="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%203.png"/></a></figure><p id="9beeb17d-9d90-43dd-bb4f-a9f17e59ad00" class=""><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Impasto%20bfed29a9375143418ad169c1161ff377.html">Impasto</a> </p></div><div id="35d459f9-83b1-40c3-84f6-6d4482241114" style="width:25%" class="column"><figure id="299429a9-98a2-4fb5-8937-9bb88cef12bf" class="image"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%204.png"><img style="width:916px" src="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%204.png"/></a></figure><p id="4ca5dcc2-2a41-4ecc-9834-0a4c09598a3e" class=""><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Growing%20Squares%20b7f6c7d5aa0e452195cfae8d84104043.html">Growing Squares</a> </p></div><div id="15192bfb-7c69-402a-bd55-94bf34b6b81d" style="width:25%" class="column"><figure id="b3f053b3-0a78-4597-b164-e3a811a85e99" class="image"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%205.png"><img style="width:960px" src="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%205.png"/></a></figure><p id="e897af5a-1c51-46d3-8d59-2977af513adc" class=""><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Painting%20f814d966b8104a0f8b7ff70e82d5d72b.html">Painting</a> </p></div><div id="32325a0b-269a-489c-9fe6-39ae7f0767f9" style="width:25%" class="column"><figure id="72c779b2-4034-423d-a7ad-76a787b3cbee" class="image"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%206.png"><img style="width:1696px" src="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%206.png"/></a></figure><p id="77f423f1-e920-4342-af53-3649292c05a8" class=""><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Recursive%20Subdivision%20Cube%20f85b57d2af794ee28a8a158efa1ca52d.html">Recursive Subdivision Cube</a> </p></div></div><p id="66009e43-d7be-44f5-a0b5-4a1cca0ae37f" class="">
+</p><figure id="bfed29a9-3751-4341-8ad1-69c1161ff377" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Impasto%20bfed29a9375143418ad169c1161ff377.html">Impasto</a></figure><p id="f81c4fdd-9382-4b1c-88bc-6b5517d97b5e" class="">Chunky 3D painting.</p><figure id="f85b57d2-af79-4ee2-8a8a-158efa1ca52d" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Recursive%20Subdivision%20Cube%20f85b57d2af794ee28a8a158efa1ca52d.html">Recursive Subdivision Cube</a></figure><p id="6ce41d84-83dd-4e5d-bb32-3844b4983585" class="">A digital fidget toy.</p><figure id="dc6e4327-2bf8-4877-9f0d-d1a50ea9935f" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Figma%20LOGO%20Plugin%20dc6e43272bf848779f0dd1a50ea9935f.html">Figma LOGO Plugin</a></figure><p id="d59d67d8-9feb-4f03-af38-a1ec8ff599c9" class="">Turtle drawing in a vector editor.</p><figure id="b7f6c7d5-aa0e-4521-95cf-ae8d84104043" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Growing%20Squares%20b7f6c7d5aa0e452195cfae8d84104043.html">Growing Squares</a></figure><p id="2d3a162f-0468-4118-9ff6-dd785a5b41d4" class="">Generative art.</p><figure id="f814d966-b810-4a0f-8b7f-f70e82d5d72b" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Painting%20f814d966b8104a0f8b7ff70e82d5d72b.html">Painting</a></figure><p id="55968e3b-789a-4a7d-a8fe-3cab52165e57" class="">From my sketchbook.</p><p id="d9cc12b0-4108-4daa-a297-748fa9c763e5" class="">
+</p><h2 id="d7a62eaf-21fe-487a-b9f6-fdcda447dc5a" class="">Apps</h2><p id="d321254d-f491-49ad-8afd-9313618bafd4" class="">I&#x27;m now more interested in <a href="https://twitter.com/yoshikischmitz/status/1208625526966902784">environments</a> rather than <a href="https://twitter.com/yoshikischmitz/status/1202581577571557381">apps</a>, but I&#x27;ve made my share of them in the past.</p><figure id="0f8ad246-7e15-4cae-8ef5-1cb85d4b6bb2" class="image"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%207.png"><img style="width:480px" src="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%207.png"/></a><figcaption>Hyper Room, a space for remote collaboration in VR.</figcaption></figure><figure id="abcdac83-582f-456b-b659-8d40584bb6ba" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Hyper%20Room%20abcdac83582f456bb6598d40584bb6ba.html">Hyper Room</a></figure><p id="b22ec400-0f26-40c4-9ac7-4bb12fa465d2" class="">A VR space for communicating with yourself and others.</p><figure id="09e3f698-3d7c-43bc-972c-cf0528a8d4e2" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Urban%20Compass%2009e3f6983d7c43bc972ccf0528a8d4e2.html">Urban Compass</a></figure><p id="91654b4b-14f1-4d51-b9a2-6bc0ddffba46" class="">Data dashboard for a city.</p><figure id="aabd6e12-841d-48db-9c77-c33dae7e5720" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Linetime%20aabd6e12841d48db9c77c33dae7e5720.html"><span class="icon">⏲</span>Linetime</a></figure><p id="21717353-02c6-489e-9c1e-6901d85c845c" class="">Pomodoro + notes.</p><figure id="f24361b8-8c5d-47e5-ad5c-5e3872a6a2ab" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Thread-based%20chat%20app%20f24361b88c5d47e5ad5c5e3872a6a2ab.html">Thread-based chat app</a></figure><figure id="fdc950e3-5f10-400f-827f-6757146cebed" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Email%20Redesign%20fdc950e35f10400f827f6757146cebed.html"><span class="icon">📨</span>Email Redesign</a></figure><p id="0888e5d7-da7b-4668-9862-8230a9630338" class="">
+</p><p id="0194dcae-9751-4500-9722-65e0c055c5ad" class="">
+</p><h2 id="a490c84a-2a9c-4187-b577-6602df1f1f83" class="">Twitter Threads</h2><p id="627914a0-41cf-4432-a4b3-7c3f47d21324" class="">I&#x27;m still filling this site out. In the meantime most of my written thoughts are on Twitter(<a href="https://twitter.com/rsnous/status/1272642219069984768">which I really enjoy as a medium</a>). I have some ongoing threads I use to chronicle my thoughts and learnings on some topics.</p><ul id="9f858ce0-ec24-4ff3-a87f-c8b5ba154cbc" class="bulleted-list"><li style="list-style-type:disc"><a href="https://twitter.com/yoshikischmitz/status/1208625526966902784">Software as space</a>
+Musings on space, grammars, and nesting in software.</li></ul><ul id="e1aefb6a-1c29-44b0-a93f-112dc4a52dc2" class="bulleted-list"><li style="list-style-type:disc"><a href="https://twitter.com/yoshikischmitz/status/1202570727171313664">Smalltalk and OOP</a>
+Learning the deeper lessons behind the first object oriented GUI desktop.</li></ul><ul id="72e8cf0e-6312-4b4d-a674-8d54b1883cfc" class="bulleted-list"><li style="list-style-type:disc">The <a href="https://twitter.com/yoshikischmitz/status/1203951793668968448">&quot;user experience&quot;</a> of books
+What makes an effective book?</li></ul><ul id="128a5676-e241-432a-8537-dca05e810605" class="bulleted-list"><li style="list-style-type:disc"><a href="https://twitter.com/yoshikischmitz/status/1167582844689907712">Thinking through creation.</a>
+Correcting my historically flawed model of the creative process.</li></ul><ul id="fc98e1e8-4548-4365-872b-348fcd5e1e80" class="bulleted-list"><li style="list-style-type:disc"><a href="https://twitter.com/yoshikischmitz/status/1259630342924689409">Windowing in web apps</a></li></ul><ul id="1a0fb59d-ac54-4ffa-bc31-0543c357c97d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://twitter.com/yoshikischmitz/status/1198096409087463424">Explanatory maps of structured documents</a>
+Thinking about the spectrum between WYSIWYG and code, and what other visualizations lie in the same neighborhood.</li></ul><ul id="12b02b8e-419e-4d64-b6bc-4d7ecffad01f" class="bulleted-list"><li style="list-style-type:disc"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Random%20Ideas%20acb845de76344c14944731d1b712053e.html">Random Ideas</a> also has more twitter links.</li></ul><p id="9182d247-cba4-4af1-9f54-8a4eef7c34b2" class="">These are all facets of something larger I&#x27;m trying to see more clearly.</p><p id="758175cf-3af9-4c3f-9e52-3ecf838a9812" class=""><a href="https://www.notion.so/Expanding-UI-OS-e58f65ad81d94fb187cc18275b22f68c">Expanding UI OS</a></p><p id="2ccee787-ed36-430b-ab75-42f828f777a7" class=""><a href="https://www.notion.so/Dango-b46c07f3dc224f968c768885abe70e70">Dango</a> </p><p id="6900c1a2-4716-4543-b3d2-4e8839daf0d2" class="">Why do we have so many different kinds of digital documents?</p><figure id="353b5d07-13dd-4428-8e74-329c8fac4f41" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Data%20Design%20Language%20353b5d0713dd44288e74329c8fac4f41.html">Data Design Language</a></figure><p id="495b41a0-eb8f-436d-8716-653c117a0177" class="">What if we could directly </p><figure id="44b61414-b822-473e-8e04-f8d1bd4dca21" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/File%20browser%20window%20manager%20hybrid%2044b61414b822473e8e04f8d1bd4dca21.html">File browser window manager hybrid</a></figure><p id="38dd8a5f-dec2-4384-84c4-b3316fda475e" class="">Concept for a hybrid file browser/window manager.</p><figure id="a683c678-33a1-45de-9155-02b5991c3f6a" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Untitled%20Comic%20a683c67833a145de915502b5991c3f6a.html">Untitled Comic</a></figure><p id="09008407-6b85-4cac-a16a-df80eb180ed3" class="">A comic about data access, end-user programming, and the object oriented desktop metaphor.</p><p id="7ad4087f-0316-4c0a-a31b-93fae2307ffc" class="">These are things I&#x27;d like to exist but maybe am not going to work on immediately.</p><figure id="e4f44cfc-f4e2-4762-a181-2504bb68d75a" class="link-to-page"><a href="About%20Me%20f1cfef8487564cbe993677195b44dc8a/Bookmark%20Manager%20e4f44cfcf4e24762a1812504bb68d75a.html">Bookmark Manager</a></figure><p id="59270d42-7a3f-4faf-97f3-3ffcc6af055f" class="">What got me into organizing scattered data.</p></div></article></body></html>
