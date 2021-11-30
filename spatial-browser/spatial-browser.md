@@ -1,6 +1,6 @@
 # Spatial Browser Concept
 
-(Discussed in private Discord):
+(Discussed in private Discord, September 6 2020):
 
 > I haven't released it, but earlier this year, inspired by Makespace, I was developing this idea of a spatial browser like this. p5stamper.com (cocreated by @supercgeek ), the roam graph view, liquidtext, and @visakanv's use of the scalper app were also inspirations. But seeing the makespace demo was what immediately got me thinking about this kind of browsing. I wanted to take that idea of clicking a link and seeing a new window open on the canvas, and see what it would be like with content designed for spatial browsing, and with more operations for decomposing/remixing the hypertext.
 
