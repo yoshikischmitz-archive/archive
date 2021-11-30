@@ -1,5 +1,6 @@
 # Yoshiki Schmitz Archive
 
+This repository consists of Yoshiki Schmitz's public remarks/works. It attempts to catalogue everything Yoshiki himself would have included as representative of his public thinking (ie, not particularly old social media posts).
 
 For best browsing experience, visit [the hosted version](https://yoshikischmitz-archive.github.io/archive/).
 
