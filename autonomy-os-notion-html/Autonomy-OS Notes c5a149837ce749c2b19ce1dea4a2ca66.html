@@ -1,0 +1,674 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Autonomy-OS Notes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="75313dd3-85f3-42d3-a649-09512e0f5ba5" class="page sans"><header><h1 class="page-title">Autonomy-OS Notes</h1></header><div class="page-body"><p id="f1f7486e-aded-4e26-b283-7b9d6e3dab1c" class="">Recentering the </p><p id="d051dbb7-c5f1-47f0-90f8-1af70ad3f5b7" class=""><a href="https://www.vice.com/en_us/article/pa75a8/worker-owned-apps-are-trying-to-fix-the-gig-economys-exploitation">https://www.vice.com/en_us/article/pa75a8/worker-owned-apps-are-trying-to-fix-the-gig-economys-exploitation</a></p><p id="48be3b85-1490-4f77-91a8-d41d8c316949" class="">
+</p><p id="b966a6dc-c7f2-46ad-857f-d8debcd96fe9" class="">
+</p><div id="05df6b7c-6b50-4dce-a129-17094836a6d1" class="column-list"><div id="a2317fa5-f5c8-4194-afc5-3f48d772dc35" style="width:33.333333333333336%" class="column"><figure id="c5a14983-7ce7-49c2-b19c-e1dea4a2ca66" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled.png"><img style="width:1652px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled.png"/></a></figure></div><div id="d871b8cb-68a7-4cfb-b918-c3d88589d067" style="width:33.333333333333336%" class="column"><figure id="e78c01b5-bcce-47e9-9e3c-4fbf2fa0d108" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%201.png"><img style="width:890px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%201.png"/></a></figure></div><div id="693c31de-df24-44f6-88b6-a814fd81124a" style="width:33.33333333333333%" class="column"><figure id="78c3fdea-5220-4c15-bf41-2fdb266aafa3" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%202.png"><img style="width:1274px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%202.png"/></a></figure></div></div><p id="732a26be-7f65-4716-bf43-d6050958760a" class="">
+</p><h1 id="176246fa-fba8-4799-ae56-4c2e1f6398f0" class="">Goal</h1><p id="1ab3e4ed-37d0-414c-95bc-9d08af72a325" class="">A language spoken by the user through gesture to evolve their system.</p><p id="34d08dbd-2892-42d1-aff6-a6be570fdd45" class="">
+</p><figure id="e955f28f-7c09-40ae-bab0-6a1068d019ab" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%203.png"><img style="width:3024px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%203.png"/></a></figure><h1 id="ed1afdbf-424a-49a6-8106-3f7c70854f38" class="">Clean these notes up!!!</h1><ul id="9bea2468-9c16-4260-ae57-05c2ae8a4dc4" class="bulleted-list"><li style="list-style-type:disc">explain why drafts are a broken pattern</li></ul><ul id="ca5180cc-9cf8-4046-b3e2-05044b668060" class="bulleted-list"><li style="list-style-type:disc">Filtering cards<figure id="70693272-60d6-4058-87e4-c29e3b2c9b5e" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3462.jpg"><img style="width:3689px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3462.jpg"/></a></figure><ul id="da5dd089-770c-48da-9cd9-07fbf6310d81" class="bulleted-list"><li style="list-style-type:circle"></li></ul></li></ul><p id="14de8359-2097-4c49-b7e9-1fe1f90825f7" class="">Clicking on a card, and searching its contents.</p><ul id="a989f041-9f5a-42e3-b273-7dadc8df158d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.reddit.com/r/AskAcademia/comments/62phtx/how_do_you_organize_and_track_your_research_and/dfownu6/">Output of a program should be tied back to the version of the program run.</a></li></ul><p id="2d0e90f3-777a-42c2-9ded-61934730960a" class="">
+</p><figure id="0632496c-340d-4dd8-9ef9-0b2a9be092a0" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3421.heic"><img src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3421.heic"/></a></figure><h1 id="7ac1b527-6e31-49a2-837d-9f2abd26d069" class="">Specific Setups</h1><h2 id="b811d908-6abe-4927-83ae-5becdfda8db4" class="">Email</h2><p id="6a6defb0-2796-4065-9503-2e31ad83e971" class="">What if there was a list inspector view that you could drop your list in, and it would create a side window showing you the last clicked element. Window management.</p><p id="681fbdbb-f2ff-4f7d-be53-4e2ef4d9f93e" class="">Maybe when a card is in a list, the card itself shouldn&#x27;t know what happens you click on it. Maybe the list should know and emit an event. And peerhaps by default that event is for the list to push a copy of the card out of a pipe? And then another card can take that card and expand it?(every card has a small → medium → large version of itself)</p><p id="0462b722-4c76-4e14-83fd-d693e0282369" class="">What if a list view exported a selection, and you could write an equation like:</p><p id="e73a5067-7a31-44cf-98e2-9e65c517620c" class="">List.currentelement = Sideview.activeElement</p><ul id="dfd3e71d-2724-4c95-9f91-4db5a2a6b0b1" class="bulleted-list"><li style="list-style-type:disc">A card that takes the last clicked card and renders it large. Can be constrained to a list of cards.<ul id="85bf820e-4d66-4f13-8269-22430e851590" class="bulleted-list"><li style="list-style-type:circle">Gets rid of the need for dedicated full-screen modes.</li></ul></li></ul><h2 id="712deb72-a46f-4527-a213-d04197c6ce22" class="">Video Notes</h2><p id="0818b897-513f-4f21-9634-61b2d275eae2" class="">This setup, but with cards:</p><div id="a209ae68-fcfb-4d61-8c67-4e54996f192b" class="column-list"><div id="855e6cb7-5df7-4e16-8228-fcde61e67c19" style="width:50%" class="column"><figure id="ddc601c4-2743-46b6-8f69-aaf57cbe7603" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%204.png"><img style="width:3360px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%204.png"/></a></figure><h2 id="312092d4-66b4-40bc-b273-9dc2296fc277" class="">Reading</h2></div><div id="f6fb36f0-2f18-4a07-b369-9371b29138e6" style="width:50%" class="column"><figure id="a9284bb4-5a92-4980-9b32-0926ff1efbaf" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%205.png"><img style="width:1192px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%205.png"/></a></figure></div></div><p id="2f665bbe-e415-4e3a-9695-5c76ee439992" class="">Expanding a page horizontally, so its content flows in columns. Esp. for TOCs like the Summary of The Language in APL. Then you can click and drag links out of it. Like in:</p><div id="45ccfe13-3d46-4048-9909-c085b585ea77" class="column-list"><div id="50ba4d42-1d22-4f2d-876f-872a5072f799" style="width:50%" class="column"><figure id="3b1ccdfb-b447-4b1d-9a90-5fc09cde0e3f" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%206.png"><img style="width:288px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%206.png"/></a></figure></div><div id="0a82a333-7b52-415d-be00-dd32d4d22ec3" style="width:50%" class="column"><figure id="dfb10605-e2e6-4f2b-b1ba-bb086cc66ceb" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3424.jpg"><img style="width:4032px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3424.jpg"/></a></figure><p id="bfb43ffb-a9c4-42ae-a40e-e365bdb9c4c3" class="">Tearing off transcluded/<a href="https://twitter.com/tobyshorin/status/1270364609317347329">quotebacked</a> things. </p></div></div><p id="d8cd1b49-9b7a-4fd5-9cec-3944b36a52c1" class="">Freeform hyperetext browsing.</p><h3 id="67bfe0ec-f4b9-4d18-bc0a-56cd975d6ae1" class="">Lectures</h3><p id="bedbede8-178a-48c2-b1ac-80ee3c9f7c49" class="">
+</p><figure id="14ed05a2-db99-4de8-8b1b-2de430f501e3" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%207.png"><img style="width:336px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%207.png"/></a><figcaption>This guy is using the Photo Booth app to get his face into the screen recording.</figcaption></figure><p id="711e7d9e-f8ab-40c3-b7c0-130e5d08ef80" class="">People should be able to create a card that contains a presentation on one side and a video-view on the other.</p><h2 id="d70edf6d-e5eb-4074-9f82-bf560f811532" class="">Virtuosity and Language</h2><p id="5d09321f-e779-4d83-a2c4-2329da211a6d" class="">You can become a virtuoso pianist or a virtuoso python programmer. It&#x27;s impossible to become a virtuoso computer user because the rules of the system are so inconsistent. If you look at primitive math(like euclid <a href="https://www.notion.so/Personal-Notes-on-Video-Games-and-the-Future-of-Education-7e4112f5ac5946b18f872e8e334634e0"><span class="icon">🚂</span>Personal Notes on &quot;Video Games and the Future of Education&quot;</a>) iit&#x27;s hard to see how you could &quot;standardize&quot;(find better word for this) the freeform text descriptions- perhaps early mathematicians would have said the freeform text is essential!  Perhaps fear from what you would lose if you compressed it somehow. But clearly symbolic mathematics is easier, and it lets you develop a skill: the skill of symbol manipulation, which is both a learning aid and a &quot;doing&quot; aid. We don&#x27;t have that for construcing interfaces on the fly.</p><div id="e2a6dc7e-1ec7-4856-93ce-0c0f83b2745d" class="column-list"><div id="78ffa36b-116a-47a9-be34-22b6375d7359" style="width:50%" class="column"><figure id="25ee7121-a24f-4a84-932c-c3e29c1ad0c0" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/25A3EBCF-4FEF-4FBA-B781-B9EEADFB54A9.jpeg"><img style="width:192px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/25A3EBCF-4FEF-4FBA-B781-B9EEADFB54A9.jpeg"/></a></figure></div><div id="67dbaa3f-b52f-4e38-a2d1-4812b8db4e0b" style="width:50%" class="column"><figure id="08462524-08c3-49c0-897a-1faf6218f95b" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/F7C8F308-524B-4BA1-8333-CF766EFA45E2.jpeg"><img style="width:144px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/F7C8F308-524B-4BA1-8333-CF766EFA45E2.jpeg"/></a></figure></div></div><p id="86b788e9-d67f-4609-9b64-3ef9c6c3559e" class="">
+</p><ul id="36c2d484-940c-474b-8f09-9d8f6daeaf48" class="bulleted-list"><li style="list-style-type:disc">transclusion pointing comics interpolation patterns non-linguistic communication with transclusion of many things like in comics.</li></ul><h1 id="213a8262-0fa5-4f09-87a3-3b0cdeaa25cc" class="">Reconfiguration</h1><div id="f169f032-d380-40d4-9f72-db44f66adaa4" class="column-list"><div id="8e92ee41-c8aa-49d7-a345-a71008887edc" style="width:50%" class="column"><figure id="d288302d-8f2b-46ef-a3a5-6d2fe15dc909"><div class="source"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Screen_Recording_2020-07-11_at_14.39.11.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0f6703a4-5cb9-483d-9f7f-ad0f36556a5b/Screen_Recording_2020-07-11_at_14.39.11.mov</a></div></figure></div><div id="a31b398c-6f9a-4cf0-a914-888ef6b3f7a9" style="width:50%" class="column"><figure id="ce32c71f-80a4-41c0-a789-95483a677850" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%208.png"><img style="width:269px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%208.png"/></a></figure></div></div><figure id="b69c45f6-dc37-4ab6-9497-4ba3a7d8310a" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%209.png"><img style="width:2233px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%209.png"/></a><figcaption>Perhaps each tap into a deeper level is also an unfolding expansion. Like a comic book.</figcaption></figure><p id="890e5e54-4e4c-4aa5-b172-55311daee9ca" class=""><strong>Maybe when you drag a window onto another window, you can chose what “glue” to use to bind them. The glue decides how they get rendered together. So there’s a bullet-point glue that binds windows together with some increasing left-padding.</strong></p><p id="04a5e2f9-989e-47e2-a7cf-d68e6594c86a" class="">Reality has a rich repository of binding mechanisms for as-hoc combinations of objects. Tape, glue, staples, paper clips etc all allow for different kinds of combinations with advantages and disadvantages. I want to have that same rich language of combination in my computer.</p><p id="2be510c3-b26d-4a55-b4ce-07c79c1d6b5b" class="">I feel like this is still a case of the “glue” acting more or less like a “container” to the nodes tho... perhaps for any given instance of a node, it should have back links to the glues it participates in. Then, when we render a node, we look at the glues it’s a part of and render those?</p><p id="e9db2e6a-6e19-4ffb-a943-0c10c11ce547" class="">What if we only want to render a glue for a specific transclude instance of a card? Maybe you have to surround the card in another card and glue there? Is that convoluted?</p><ul id="daf848a6-eae6-4021-9dd9-2beafa9ee5d5" class="bulleted-list"><li style="list-style-type:disc">Perhaps, in a certain sense, even the email object is formed by the free association of objects like subject, text, and sender.
+
+Another perspective: the subject is a &quot;webpage&quot; that has text in it, which has a bidirectional link to the email.
+A sender is a web page that has a name and an email address(idk, whatever the email protocol specifies too I suppose.)
+So far this kind of sounds like XML, but I&#x27;m also imagining extending it?</li></ul><ul id="d2131b42-e3be-44d3-a472-4f08cd82fb67" class="bulleted-list"><li style="list-style-type:disc">The nice thing about LEGO bricks is that they advertise their affordances for extension. When you drag and drop a window around, it should do the same.</li></ul><ul id="cb0f658d-4831-4c62-90e2-355119edb829" class="bulleted-list"><li style="list-style-type:disc">Modification should be continuous, perhaps even indistinguishable, from normal use of the software<ul id="20de610c-24b5-4ccb-9c29-d240001ac07f" class="bulleted-list"><li style="list-style-type:circle">it&#x27;s important that this happen in-line w/ using the app itself. Because if you have to go into a separate mode or a customizaton menu, then you lose flow. And you can&#x27;t see how your changes affect the actual concrete example that prompted you to make the change.</li></ul></li></ul><ul id="4330ef79-64ca-4118-ae4f-6595db0976d8" class="bulleted-list"><li style="list-style-type:disc">Dragging design tokens onto cards/relations<figure id="e527fc6e-346e-4928-a898-2918f2932885" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3418.heic"><img style="width:240px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3418.heic"/></a></figure></li></ul><h1 id="248f49bd-07cf-4d1f-800f-4947756bac65" class="">Demo Flow</h1><p id="d376d8e0-4d02-4fdb-ae6f-a70fd1e39edd" class="">demo on ipad:<div class="indented"><ul id="171a67f2-7f7e-43c9-a541-515e5589c91c" class="bulleted-list"><li style="list-style-type:disc">expand the email preview card<ul id="7527a496-4eb1-484e-b1b1-be1a54d7b274" class="bulleted-list"><li style="list-style-type:circle">drag it into a workspace adjacent to the email client</li></ul><ul id="88f97baa-e1b3-4dab-9359-244da97e2b8e" class="bulleted-list"><li style="list-style-type:circle">edit the email preview in the workspace</li></ul><ul id="5ec9cac4-5a1c-414f-9a71-4d45fc4a17cb" class="bulleted-list"><li style="list-style-type:circle">see the email preview synchronized to the edits</li></ul><ul id="66310836-08b0-4591-8997-795cf050b227" class="bulleted-list"><li style="list-style-type:circle">then &quot;push changes to master&quot;</li></ul><ul id="d0b8329c-d6aa-409b-ad55-e5ce3ac93942" class="bulleted-list"><li style="list-style-type:circle">optionally create a &quot;commit message&quot; maybe</li></ul><ul id="cd962947-8621-4c2f-9e69-c9b74fd9eac8" class="bulleted-list"><li style="list-style-type:circle">hypothesis annotation of email contents. And replying using the annotations. Maybe forking the sent-card?<figure id="75d1382a-2513-4975-bdfd-7f76b69471e9" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3425.heic"><img src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3425.heic"/></a></figure></li></ul></li></ul></div></p><ul id="7ed70844-ec6f-4098-990f-8a88b975cd66" class="bulleted-list"><li style="list-style-type:disc">demo on phone<ul id="8ddd69a2-64f1-498a-a10a-e3454d117b65" class="bulleted-list"><li style="list-style-type:circle">drag email into clipboard</li></ul><ul id="2894b97b-b66f-455f-a798-bfc8df65c1d7" class="bulleted-list"><li style="list-style-type:circle">open clipboard on computer</li></ul><ul id="5acf63b7-df84-47fe-81ed-84d141feb616" class="bulleted-list"><li style="list-style-type:circle">expand the card inside the clipboard on the computer</li></ul><ul id="d08ee9a4-0ff7-4cd2-bef0-5e4d4073c4a1" class="bulleted-list"><li style="list-style-type:circle">rearrange the card in the computer<ul id="ece76f21-e78e-485e-a629-f8f940a23d7a" class="bulleted-list"><li style="list-style-type:square">show the changes reflected in the phone in REAL TIME</li></ul><ul id="a200e82b-8999-4ff6-b169-44e669d3309f" class="bulleted-list"><li style="list-style-type:square">push changes to master</li></ul><ul id="5bec6d7b-2781-444b-8bfe-0d8a15c3d237" class="bulleted-list"><li style="list-style-type:square">wow. So it&#x27;s important that the devices can communicate over bluetooth or a similar ultra low latency nearfield system. Going through the internet won&#x27;t work.</li></ul></li></ul></li></ul><ul id="4acf22cb-0ac9-4b3a-9328-9d8cb768bb6c" class="bulleted-list"><li style="list-style-type:disc">color emails based on age?</li></ul><h1 id="3f798923-2c8b-45eb-af8c-b0b2e55fb76b" class="">Todo/Prompts/Unkowns/Problems</h1><ul id="4ebdf21c-fb0e-41b8-bdd4-71d0e89aa760" class="bulleted-list"><li style="list-style-type:disc">Design the flow of adding a memo or a todo to an email.</li></ul><ul id="3c8fab71-9334-416e-95df-da4ddb16de2b" class="bulleted-list"><li style="list-style-type:disc">Go through computing spaces log and find my old app iedas and then turn them into flows for the system.</li></ul><p id="beefb567-c850-4c39-8b5e-04b7a7f30059" class=""><strong>How would I do calendars in the card UI metaphor?</strong></p><p id="61bd1b24-568b-4cc2-a157-b17593f3cd3a" class="">Hmmm I feel like I’ve been down this road with Dango before lol</p><ul id="6f6d72df-066d-4885-8681-ea10aa8c5d17" class="bulleted-list"><li style="list-style-type:disc">I need to put on my ecological hat too. And my ecological hat is not of much substance compared to my programming hat. I need to read a good book on ecology and life.</li></ul><ul id="4be79128-d274-46e4-8151-be1705eb4409" class="bulleted-list"><li style="list-style-type:disc">On the PC, what is the appropriate gesture for unzipping and zipping?</li></ul><ul id="db367582-99a3-4bb8-b13b-3763a1e0511d" class="bulleted-list"><li style="list-style-type:disc">play around w/ dango-style notation for vertical lists etc.</li></ul><ul id="2f3cec1b-2146-4540-83a3-ba5971eeac4c" class="bulleted-list"><li style="list-style-type:disc">How do maps fit into this? On mobile, if every card is draggable, how do we allow for interactions like Maps that demand freeform panning/zooming gestures?<ul id="096f11e5-488b-40f1-b7b1-410879a63890" class="bulleted-list"><li style="list-style-type:circle">Maybe these sorts of elements should have &quot;lids&quot; that you have to &quot;lift&quot;. Imagine a solid lid made of glass, like a CD jewel case, covering the map card. As you scroll and maybe tilt your device, you see it glisten slightly. Perhaps using force touch, you can pull it up.</li></ul></li></ul><ul id="a4914286-0f84-4496-b371-74672ed24818" class="bulleted-list"><li style="list-style-type:disc">How will AR apps like Measure work? - Is there a case for full-screen tools?</li></ul><ul id="7d6682a9-7bc0-4af5-8886-6ee23022c139" class="bulleted-list"><li style="list-style-type:disc">How do you communicate to people all of the things you can do with an object without overwhelming them?</li></ul><ul id="ebaa3ee2-0d5e-4f98-b557-1f5cb014a9e2" class="bulleted-list"><li style="list-style-type:disc">It&#x27;s nice to be able to see a preview of a linked card(every card has sm→md→lg so you can show sm(or configure which size you see)). But I don&#x27;t quite like that it&#x27;s the default action for hover. Like I want a smooth fast way to see the preview, but still be the initiattor of it?</li></ul><h1 id="2ea5bac7-b22f-49e7-987e-e1c2b57ba9cc" class="">Seeds</h1><figure id="d6891508-15f7-4298-86bf-d46490d1ab78" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3427.jpg"><img style="width:384px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3427.jpg"/></a></figure><ul id="6a086794-03a2-4af9-81df-7026d17abc1f" class="bulleted-list"><li style="list-style-type:disc">There should be a flow for quickly turning something into a horizonal list, fullscreening it, and then going into each one.</li></ul><ul id="34047c83-b068-40f5-8fc7-cf647f825001" class="bulleted-list"><li style="list-style-type:disc">email: close as read, close as unread.</li></ul><ul id="dbfc6eb2-9975-4195-9a92-7c829c9ef6cd" class="bulleted-list"><li style="list-style-type:disc">Remember: FB and Netflix have those horizontal scrolling things and it might seem like you need to replicate them but there&#x27;s nothing fundamental about these. Not all paterns from the current world are valuable.</li></ul><ul id="c51b35f6-8b25-448a-85de-48b88ca0e850" class="bulleted-list"><li style="list-style-type:disc">highlighting some text<ul id="1e3f7551-a3e6-4c73-9841-4ebba5ec7407" class="bulleted-list"><li style="list-style-type:circle">and getting its dicttionary definition.<ul id="51db37a1-dc74-41bb-90b3-4956e587682e" class="bulleted-list"><li style="list-style-type:square">perhaps a word that doesn&#x27;t appear in your statisticsal lexicon should be highlighted? or a word that doesn&#x27;t have a </li></ul></li></ul><ul id="508c9aaf-9679-4c2e-b5dd-35d6817f3c04" class="bulleted-list"><li style="list-style-type:circle">and seamlessly searching for it in yournotes or on the internet.<ul id="deddf526-c96f-47b0-8fc7-25a1c0241287" class="bulleted-list"><li style="list-style-type:square">each action effortless and geometrically connected to the last, continuously retraceable!<ul id="4338d3d7-cb28-49ae-a14f-1f576db87fc8" class="bulleted-list"><li style="list-style-type:disc">Maybe the principle of expansion could work here too:<figure id="9a8c4b55-b02d-4ffc-a09c-0e62cfcd5130" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%2010.png"><img style="width:240px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%2010.png"/></a></figure></li></ul></li></ul></li></ul></li></ul><ul id="a1cc7b3f-a760-4c05-9c88-2e47d5015b6e" class="bulleted-list"><li style="list-style-type:disc">Long-press on iOS app icon → get an action item that says &quot;search here&quot;. What is the natural gesture for search?<figure id="dff5cbe7-8778-40ba-b2ea-8f22c992ac04" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%2011.png"><img style="width:336px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%2011.png"/></a></figure><ul id="5596415a-fec4-4b61-ae73-88dccc9b9959" class="bulleted-list"><li style="list-style-type:circle">again- what is the natural interaction for search?</li></ul></li></ul><ul id="5dee68dc-51ef-4d53-89c0-ac9f6486ee87" class="bulleted-list"><li style="list-style-type:disc">Imagining an interaction where we expand buttons to see their composite commands<ul id="407847a5-8693-4cec-9257-837639367735" class="bulleted-list"><li style="list-style-type:circle">a button labeled &quot;like&quot; → expands: to a box showing a sequence of actions, and just like you can insert new UI elements into cards you can insert a new action to be triggered by the button.<figure id="c39b44ca-4f67-4da1-be48-564aa6bb791f" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3420.heic"><img style="width:240px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3420.heic"/></a></figure></li></ul><figure id="aa7fb2dd-2282-4b47-9149-d5ab57079895" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3422.heic"><img src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3422.heic"/></a></figure></li></ul><ul id="2352f50d-f6c6-4138-b309-637444794d62" class="bulleted-list"><li style="list-style-type:disc">On the web, if I see a typo in an article I read, I have to dig up the author&#x27;s email address and then send them an email. In card-world, where cards are part of reflective associative chains, we can easily tell the card about the typo, and leave it up to some conventional process to figure out how to let the author know.
+Perhaps it&#x27;s agreed that there&#x27;s a &quot;corrections&quot; stream out there that associates card IDs with correction objects, and authors read from those streams into their inboxes or todo boxes.</li></ul><ul id="b4c28340-9db0-4f7c-a30c-317cce64e90a" class="bulleted-list"><li style="list-style-type:disc">A quick command to send a card, or a part of a webpage, to another webpage or a card? - Every card has an inbox?</li></ul><ul id="473096aa-fe55-4163-83ba-027c1e796ac9" class="bulleted-list"><li style="list-style-type:disc">maybe there&#x27;s no email, just people sending cards to each other?<ul id="33364acd-8e5b-40bc-8d38-8c806057fc1b" class="bulleted-list"><li style="list-style-type:circle">consider the outside → inside boundaries in A Pattern Language. We need something like this for cards in shared spaces too. When you chat w/ someone, it should be clear you&#x27;re not in a public place anymore. i.e.semi-permeable membranes in  </li></ul><ul id="034ba21f-52ba-43f2-b841-a5e9e2f19c00" class="bulleted-list"><li style="list-style-type:circle">your inbox is really just that - a box that cards from othere people go into</li></ul><ul id="f0727f48-25a0-4d65-92f5-c0e4c362c4ea" class="bulleted-list"><li style="list-style-type:circle">reply to a card - as a message</li></ul></li></ul><ul id="51d82b95-bf54-477e-96a3-e610a54b49c5" class="bulleted-list"><li style="list-style-type:disc">Subverting the feed. You can inject cards into lists of cards<figure id="d67eed1e-1565-4079-b418-d71c95a003d9" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%2012.png"><img style="width:432px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Untitled%2012.png"/></a></figure></li></ul><ul id="1f6dd13b-12f4-4dc0-9b8b-1d517c5193e9" class="bulleted-list"><li style="list-style-type:disc">Tying your timer to an action. You only need to know about one timer. Like when you want to defer sending a draft email to some other time, you can drag the timer onto the send button? 
+
+Or maybe you force-push or right click the button, bringing up a defer-press-till action?
+
+At some point you need to be taught that buttons can be deferred - is this fundamental enough to be part of the onboarding process? Or perhaps the more fundamental knowledge is that button presses can be wrapped or chained with other actions.<figure id="e5f94460-b3a6-407a-a616-d98cbf503c04" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3419.heic"><img style="width:192px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3419.heic"/></a></figure></li></ul><ul id="a42bc421-035f-4f8f-b16e-9b7ff20933f6" class="bulleted-list"><li style="list-style-type:disc">Maybe everything should be moveable at all times. And when you tap on something, whatever lateral force your tap had will slightly shift the card. When you shift the card, you enter the dragged state, and see a drop-menu of actions for the card.</li></ul><ul id="3ae4021d-66d7-43d5-92c0-d1362f453653" class="bulleted-list"><li style="list-style-type:disc">Imagine this space, permeated with springs, and forces between elements. What if all interactions were driven by continuous physics simulations?<ul id="729355f8-ff34-4f58-a2c8-9165fa597cd2" class="bulleted-list"><li style="list-style-type:circle">Perhaps you wouldn&#x27;t need flexbox - alignment between elements would just be a property of where they are attached to each other by?</li></ul><ul id="5674da1d-3d8c-434f-aca2-14a757d39e07" class="bulleted-list"><li style="list-style-type:circle">Perhaps we could model text editing through springs too, thereby uniting the world of boxes and text</li></ul><ul id="57051a28-c5b6-4ff6-b3ef-6e9ab42f47b0" class="bulleted-list"><li style="list-style-type:circle">&quot;boxes&quot; would simply be boundaries of the spring system!</li></ul><ul id="53958328-965e-4c41-85d5-9bf13a623874" class="bulleted-list"><li style="list-style-type:circle">Text would be a linkage of springs </li></ul><ul id="e8bdcd8b-f39a-407f-ae21-db331ef096db" class="bulleted-list"><li style="list-style-type:circle">Any element can be inserted into a chain of character elements. <figure id="50298d90-fbdd-466f-8318-bf9856d0031f"><div class="source"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/Screen_Recording_2020-06-15_at_01.46.03.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/800b9aed-832f-47c7-a46d-d6760ccee2d9/Screen_Recording_2020-06-15_at_01.46.03.mov</a></div></figure></li></ul><ul id="e8faafbd-9bac-4d22-9e72-7eb3e4ac2dd3" class="bulleted-list"><li style="list-style-type:circle">One of: the paragraph, the adjacent characters, or the object itself, tells the object to preferable adapt to the height of the characters. I think I like the idea of the characters telling this to the object the most..</li></ul><ul id="d990c18c-6959-4a15-a2ea-5389e43b16d1" class="bulleted-list"><li style="list-style-type:circle">lol there&#x27;s NO way I could do this with React</li></ul><ul id="7187a827-4aeb-4923-ac65-3736fe70d423" class="bulleted-list"><li style="list-style-type:circle">If everything is a spring, then what are the rules for the rearrangement mode?</li></ul><ul id="7eae7869-ed8b-417b-b839-8c1b0f616ee9" class="bulleted-list"><li style="list-style-type:circle">Subtle thought for polish:<ul id="45789d53-3d40-48d9-b5d0-9c1b72f43d1c" class="bulleted-list"><li style="list-style-type:square">To keep the system feeling alive, when you drag and move a card, the elements inside of it should move just a little bit too.</li></ul><ul id="8f6b9dd7-5df2-4bb4-b862-b1dbfbd91d1f" class="bulleted-list"><li style="list-style-type:square">But if they all move with as much force as is applied to the card itself, then it would be chaos inside of them.<ul id="38629e65-fd32-4abe-8bd9-959147a37cfc" class="bulleted-list"><li style="list-style-type:disc">Especially if there are nested elements, the deepest children would move like crazy, especially if there is feedback and oscillation.</li></ul></li></ul><ul id="49d7c833-52f6-4341-97e9-44fa5f1cc4e6" class="bulleted-list"><li style="list-style-type:square">Therefore, the parent card should forward the force applied to its children, but dampened by some factor. So the elements still sway and move as they should, but with increasing less vigor as the force crosses spring boundaries.</li></ul></li></ul></li></ul><ul id="3c08330f-0727-4d99-897e-570a98523dad" class="bulleted-list"><li style="list-style-type:disc">Perhaps a rule is that every card should be backed by an object?</li></ul><ul id="53f6cf90-22a9-46a3-a17a-dab7b87bbd49" class="bulleted-list"><li style="list-style-type:disc">There is no notes app. There is no email app. Notes are notes, and emails are emails- they are objects of their own, physically independent of any container they happen to be put inside of. If an email is par of a chain of emails, then it will link to the emails that preceded and followed it. But this is a different thing from saying that there is a chain and that this chain <em>has</em> an email.<ul id="7bd73b23-8ba4-401b-bef0-ab2cbc87cda1" class="bulleted-list"><li style="list-style-type:circle">So how do you put things inside of containers?<ul id="ddd9b0eb-96cc-41a5-8dae-ca63c8b510ad" class="bulleted-list"><li style="list-style-type:square">One answer is queries of properties. We can query all emails that </li></ul></li></ul></li></ul><ul id="2ca92ebc-f946-4606-b7ef-bc7ad87bee0b" class="bulleted-list"><li style="list-style-type:disc">What about updates?<ul id="d04c7284-4a26-49d1-a1a7-8a01a2227936" class="bulleted-list"><li style="list-style-type:circle">By default, all UI updates are opt-in, granular, and reversible. So you review a changelog of updates and pick and chose the ones that you want.
+If a component of yours differs from an upstream component, you get a notification, and are shown a view of both of those components side by side. You&#x27;re told what the new features or bug fixes of the component are. Say your email provider has added a custom &quot;score&quot; or something to an email - you can take just the new subcomponent for the score and add it to your own component.</li></ul></li></ul><ul id="77821eeb-ae6a-4dfd-8747-454ac9f5d839" class="bulleted-list"><li style="list-style-type:disc">Combine this with <a href="https://www.notion.so/Data-Design-Language-7dcc0f4ef03f4e3db380517eec0e04b4">Data Design Language</a> but w/ an object oriented fashion - there are methods too!</li></ul><ul id="dd0ced73-2996-4d22-854e-fd138580ce08" class="bulleted-list"><li style="list-style-type:disc">Creating <strong>relations that have identity</strong> - for example, the space between two objects is specified by an object that relates them. This object has a uuid, and when you merge upstream changes, they are applied to it.<ul id="674c7d5f-1588-484d-9e7b-7ce20cc2eeee" class="bulleted-list"><li style="list-style-type:circle">Maybe they have an identifier in the code like <code>r1(Tweet, Comments)</code></li></ul><ul id="3d4aa50c-4ba7-4255-984f-42a707748931" class="bulleted-list"><li style="list-style-type:circle"><code>r1.distance = 8px</code></li></ul><ul id="79fd8335-c50d-4785-8a6c-a3b5a3103d8f" class="bulleted-list"><li style="list-style-type:circle">Reading  - <code>X -&gt; r(A, B, ...)</code> becomes something like <code>Tweet -&gt; r(Sender, Recipients, Text, Media)</code><ul id="be534bcf-69fa-4be0-ad5a-859430a7cf9b" class="bulleted-list"><li style="list-style-type:square">Alexander says everything is relations, and perhaps with infinite resolution this is true. But on the computer we have to decide on a maximum depth for this recursion- bottom out to Objects.<ul id="92802730-bad3-4bff-9a04-e153824249f9" class="bulleted-list"><li style="list-style-type:disc">So the language perhaps should have both Objects and Relations. Relations &gt; Messages? Messages are inherently ephemeral. But the relation between a door and a hinge and a wall is not ephemeral, and cannot be modeled, I think, by messages. Well, unless the messages for e.g. &quot;binding&quot; happen very frequently all the time.</li></ul></li></ul></li></ul><ul id="12555c33-1ea3-4e25-b9cd-f5ee5cdde569" class="bulleted-list"><li style="list-style-type:circle">take: The metaphor is cards coming togethre via glue that bonds them. there are no primitive containers. Only associatinos of objects, like atoms.<ul id="53438628-325d-4c9c-8fad-4c1bdcad665f" class="bulleted-list"><li style="list-style-type:square">boxes are a real thing tho?</li></ul><ul id="4f9f5609-766d-41b3-9cc9-b0ca4756f357" class="bulleted-list"><li style="list-style-type:square">this elegantly solves the problems of forking a &quot;list&quot; and inserting an element between two elements. If every list is an associative list, then insertion only makes sense in relation to two entities.</li></ul></li></ul></li></ul><ul id="b2365bae-1f5c-4bcc-a131-6d53627ab5ee" class="bulleted-list"><li style="list-style-type:disc">Important to acknoweldge that this iiis a document-centric model and not all things are documents</li></ul><ul id="98323e37-b6e2-497b-8e25-959156abfebd" class="bulleted-list"><li style="list-style-type:disc">Morphological processes suggest organic unity of cards?<figure id="cc681229-3c10-40a5-9b37-2ad02bd44fd4" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3417.heic"><img style="width:240px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3417.heic"/></a></figure></li></ul><ul id="718f3516-6865-4a30-86bc-4eaf4081f31f" class="bulleted-list"><li style="list-style-type:disc">When you pick something up, modifier keys appear.<figure id="8ffe93b8-ad59-4d0f-b9e9-6a2528491795" class="image"><a href="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3423.heic"><img style="width:336px" src="Autonomy-OS%20Notes%20c5a149837ce749c2b19ce1dea4a2ca66/IMG_3423.heic"/></a></figure></li></ul><h1 id="2862ab2a-e2af-4051-91c8-d13e929873f8" class="">Object Permanence</h1><p id="d339f3ee-fd3a-4df9-8523-1a5da0b75c87" class=""><strong>In the system, it is significant for a card to be created. That card has a life cycle and a permanence to it. You can annotate and remix it, and it will keep those changes when you next pull it up.</strong></p><p id="651c27f4-8714-4ac8-acc5-1cc1dde2f1c2" class="">It’s like with actual mail. The mail is permanently altered by your annotations. Of course, because it is a digital copy, it should be possible to see and restore old versions.</p><p id="c038e940-fd5f-4905-b709-440a8c2875ff" class="">So what does this mean then in relation to the pattern that a card has many size based representations? If you annotate the title in the preview, should that be reflected in the main email?</p><p id="e7179823-9430-45f9-9643-780052f02ceb" class="">I think so?</p><p id="a3f696c1-7bed-45f0-8a9f-4cb939e265ba" class="">
+</p></div></article></body></html>
