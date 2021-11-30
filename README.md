@@ -9,3 +9,6 @@ For best browsing experience, visit [the hosted version](https://yoshikischmitz-
 - ["About Me" Notion](about-me-notion-html/About%20Me%20f1cfef8487564cbe993677195b44dc8a.html) ([Live Version](https://www.notion.so/About-Me-7543563c194748f4a500d2c164bd3057))
 - [Expanding UI OS (pdf)](expanding-ui-os/Expanding%20UI%20OS.pdf)
 - [Spatial Browser Concept](spatial-browser/spatial-browser.md)
+- ["A Pattern Language for Interfaces" Notion](interface-pattern-language-notion-html/A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c.html)
+- ["React Playground" Notion](react-playground-notion-html/React%20playground%20d25191ed55b248c69d5e9fdcc6949c10.html)
+- ["Gayagaya Log 2" Notion](gayagaya-notion-html/Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286.html)

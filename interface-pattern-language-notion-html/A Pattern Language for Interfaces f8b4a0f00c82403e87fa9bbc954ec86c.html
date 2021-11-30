@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>A Pattern Language for Interfaces</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="966bf971-9c33-4924-8a30-27e2ffd3d8a2" class="page sans"><header><h1 class="page-title">A Pattern Language for Interfaces</h1></header><div class="page-body"><figure id="5049861d-4882-48f2-93e6-c53c3621d314" class="link-to-page"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/The%20Patterns%20Themselves%205049861d488248f293e6c53c3621d314.html">The Patterns Themselves</a></figure><p id="0ddaa4cf-d706-4b00-9afe-dee435b4c92b" class="">System → Programs → Apps</p><h2 id="274aee4e-c4f9-4197-a006-e7cfcdc0be97" class="">Is this a design language?</h2><p id="04687bae-7fb9-4c3a-9d09-64566e49b052" class="">No.
+
+Silicon Valley “design languages” are languages exclusively for the designer to speak to the user. The user is not given an equivalently expressive language to speak back with: the Silicon valley designer believes that the user has nothing valuable to say beyond affirmations and grunts. A &quot;design language&quot; is a language of sermons: preachers do not tolerate interruption of their mass with questions and commentary.
+
+<strong>The language I want to build is a language for conversation amongst equals.</strong></p><h2 id="121ee1d2-63a2-468f-a02a-f89f6820d122" class="">Notes</h2><ul id="ed0997f5-5b90-4e96-bf0b-834fea8495bd" class="bulleted-list"><li style="list-style-type:disc">Focus on the forces. For example: 
+force: forgetting/losing context vs. the need to know where you are.  </li></ul><ul id="459a67cb-d64d-4f90-bf9d-a5dfcb5d07af" class="bulleted-list"><li style="list-style-type:disc">I have no opinion as to whether these are implemented in the core of a system or as plugins. The distinction is meaningless if you follow the Extremely Late Binding pattern.</li></ul><ul id="78379926-03ec-4ef6-be81-a7a5508fd59c" class="bulleted-list"><li style="list-style-type:disc">Terminology: windows vs. elements. Windows is sadly already loaded w/ bad meanings. But also, &quot;element manager&quot; feels obscure.</li></ul><ul id="3b5aa164-4c56-4799-b40d-adafd8cfd4db" class="bulleted-list"><li style="list-style-type:disc">I absolutely need inline pages to do this right. I need to see the whole structure in front of my eyes. Even better would be to lay them out by category.</li></ul><ul id="d394fba5-7140-411f-9fb0-3fbde7008259" class="bulleted-list"><li style="list-style-type:disc">I want to avoid explicitly saying the system should be modifiable. take: Modifiability is not a valid pattern? Maybe it should emerge from other more basic patterns.</li></ul><ul id="af0add42-9431-46ce-bce7-d971cbcae85e" class="bulleted-list"><li style="list-style-type:disc">Maybe maintain a changelog w/ commits for every pattern?<figure id="f8b4a0f0-0c82-403e-87fa-9bbc954ec86c" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled.png"><img style="width:384px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled.png"/></a></figure></li></ul><nav id="ea2279d3-248f-4a8b-8daa-0d497721577a" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#274aee4e-c4f9-4197-a006-e7cfcdc0be97">Is this a design language?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#121ee1d2-63a2-468f-a02a-f89f6820d122">Notes</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#01abb813-7d3d-4bb2-ad11-62515aea91c5">Patterns</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b27d33e6-d502-49c5-aee1-7fb0ee16ff0d">Performance**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0dac205c-6325-4c07-b3f4-a1631eb5eed8">Full-screen any element</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#9d3692c2-0685-46d7-b0a1-8629c3a9b7fc">Notes:</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#65787d7c-fa76-4fcd-a732-2d4b88adb5a8">Hide/Collapse any element**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#30628d33-7a1c-4e5a-8bca-edda4dc5b4c8">Ubiquitous, scopeable search</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a705bbdb-cb1f-4f02-a7cc-edf31872e673">Scopeable Actions</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#25d3c522-28c8-4fa5-944e-09f91ba71697">Reflection</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2c77ec5d-39c7-41a4-9a26-cb4c838e1991">Draw everywhere</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bf77d230-5d07-453b-86ba-31ab4ac78116">Version Control*</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b98873b4-7f79-4a70-b8a6-9e5da69b6e57">Appropriate Contrast Ratios*</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#235164c4-0725-481f-b22a-e2ff78efedcf">Unlimited Undo**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ad8e1c0b-a6db-42f8-a484-dce876b691b9">Access Controls*</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#47802afe-3e06-4ba0-bf74-f58b23374297">Links</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4909be60-90cc-4519-b18c-b1eb9fd784e1">Deep Addressibility**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3f5cf3b7-9296-42c4-8b97-75b51b631f3d">Zooming User Interface*</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9e7a7d68-d0af-4365-bc19-8db35fdcbbb0">Ubiquitous Embedding**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#85895e73-fec5-4fa8-9ccb-99007f782696">Provenance Trails**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bf876610-051f-4aea-b23b-46a994a08c47">Small Code**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#857cba47-7e07-4341-92ad-6e3f366a6291">Plain and Friendly Language**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#80ee9f7a-7df4-4837-bcc1-bc4f3b1d74cc">Blameless Error Notifications**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0d8ab8ee-ff17-4889-9235-9ad206c04458">Dynamic Arrangements**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e353ac65-a0cb-40f1-b4dc-ed69766cbd17">Instant Publishing**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2656e26d-c06e-47d3-bf6a-ff94505aef91">Multiplayer Mode**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8aae0819-d31e-48c5-9b3e-aa9c995901db">Extremely Late Binding**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1575b2c1-6bd5-4a28-ab84-0211af7aae08">Disjoint Versions Living Harmoniously**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a3fa7d5d-eae0-44c4-b139-61d0e028e211">Customizeable Spelling Dictionaries</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a7b1c531-c002-4c45-98e2-bc9d46707358">Collapsable Elements</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#30ca77a7-1ace-4ea7-9792-1ca1b81c837a">Consistent Drag and Drop</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1186e412-405f-42f4-9907-e2dd9d1c6c90">Multiple Composable Window Managers*</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#746027bf-946c-47c7-a926-aa9b0196b4c8">Tiling Elements</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d78a2f32-93bb-4143-95da-cbf3a17116b8">Scrolling Elements</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1f364657-f337-4003-9036-b087ec0d9ed2">Visible Structure**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d11f6441-555d-467e-80dc-bffb8978d9d2">Direct Manipulation*</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f719768f-1968-4301-b560-376dc270c78f">Notes Anywhere*</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#257d5a2b-a7b9-4a68-a916-65241c9b5daa">Multiple Representations**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#aa7419a0-d87c-4781-bf72-b6c44a3d74bc">Customizable Keyboard Shortcuts*</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#278f68f0-e024-4ab9-ba2c-874ac761f123">Streaming Pipes**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#983c4936-60a4-464d-8e52-a386278c30e5">Command Palette*</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f3d698a9-1165-4e21-9141-220cf004af23">Backlinks**</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f93212c1-6e6f-4ed7-9961-21af353f47f7">Live Programming**</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#def47ee8-1fa8-4723-b41f-b49a793275d6">Potential Patterns</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a3425bee-f71a-4681-98e6-63cd0d516ad8">Breadcrumbs</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e74da38e-b231-4ee5-afe3-00f51b7f0e29">Batch Actions</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7d3beaac-e631-494c-a46e-e04010ab0287">Replace/Map/Filter</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6cde8f80-0111-4ce8-a0ea-f1c7dc91a63b">Workspaces</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1d339caa-fa24-4382-a46c-193ce23cd6f3">Continuous Chain of Action</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ba62af79-5385-41ae-b079-2580ba0a3461">Local Copies</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#467ce63f-80df-4fcc-a56e-ba4cf1b767f9">Going back</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#20b135c0-19f2-4386-9373-d0981293f048">Multiple Devices</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#29aab2b0-f53c-4cef-b8ef-f1d52626587c">Fast Search</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e55184e-457b-46ff-9feb-7f0d7e5df30a">Ubiquitous Mentions</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0285f765-266b-4890-ae64-79ba53dd6c87">Visible Modifiers inside of Modes and Quasimodes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d0b7d3c2-678d-4573-807d-d9dc0f12bce4">Gradually Fading Training Wheels</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5157bd5d-586b-4701-a1f7-1e9ec05e8fb5">Lightweight Processes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#475e9dcd-5e88-4a87-94c1-5301a9da2d12">Visible Performance Indicators</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6ffad9b1-aa1a-4860-a32f-11368cd257b8">Inbox of Changes</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#81928e1a-8241-4543-a97e-e7d0d2c2d806">Version Control For Settings Pages</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e77f85a3-1b14-4db9-8e6a-d53a8c5c0bfa">Detailed Activity Logs</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#adbc4650-65c7-4eb8-a13a-2295b0b46747">Screentime Control</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#51890564-13ed-4a3b-966c-452bd4a54fc0">Kanban boards</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6b7945e1-8815-44aa-a269-739831191e44">Objects shouldn&#x27;t suddenly move</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4c076cff-c721-431e-8dc0-7b63e14e4bfa">Prior Art</a></div></nav><h1 id="01abb813-7d3d-4bb2-ad11-62515aea91c5" class="">Patterns</h1><h2 id="b27d33e6-d502-49c5-aee1-7fb0ee16ff0d" class="">Performance**</h2><p id="889730c3-61e0-4394-bebd-336b87ef3393" class=""><a href="https://www.inkandswitch.com/slow-software.html">https://www.inkandswitch.com/slow-software.html</a></p><p id="1910a6ac-ff4c-48a1-8466-7229c6edff78" class="">See also Lightweight Processes</p><h2 id="0dac205c-6325-4c07-b3f4-a1631eb5eed8" class="">Full-screen any element</h2><p id="df49cac9-fa24-41ec-bc5a-3bda13fcfb12" class=""><a href="https://www.notion.so/Computing-Spaces-Log-bb7cf95d8f9b48a2a8994d8f33676cc9">https://www.notion.so/Computing-Spaces-Log-bb7cf95d8f9b48a2a8994d8f33676cc9#eb841c0a01fd4ae2b9ac924bec4a0e12</a></p><p id="d0728b55-0f32-4c49-98c9-22fcbba12666" class=""><strong>For people to realize their goals, they often need to narrow their focus on a single element.</strong></p><p id="1e758e76-cbf3-4c1d-9e6c-a11e3e77a57f" class="">Full-screen controls let people expand a single element of an interface to occupy their whole screen, letting them ignore the visual clutter of unnecessary UI. But a designer cannot hope to anticipate every possible thing the user would like to view in a full-screen.</p><p id="d841f4c7-1635-46c7-918c-3ce16c24e350" class="">Therefore:</p><p id="b1f8196b-3423-4869-b503-049c83536cae" class=""><strong>Provide a mechanism for every widget to be full-screened.</strong></p><h3 id="9d3692c2-0685-46d7-b0a1-8629c3a9b7fc" class="">Notes:</h3><p id="303c91ab-4131-4708-9ad8-d753a8258874" class="">Even as I write these patterns, I feel the need to rapidly full-screen a single pattern page to narrow my focus on it, knowing I&#x27;m inside of a whole. I must implement this in  </p><figure id="094d7e40-fd01-479a-a249-e4916e16050c" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%201.png"><img style="width:2180px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%201.png"/></a></figure><h2 id="65787d7c-fa76-4fcd-a732-2d4b88adb5a8" class="">Hide/Collapse any element**</h2><p id="b665c636-4116-4440-8329-9c27c1a65757" class="">
+</p><p id="a8fcf3ca-c82c-4a46-a2c2-08870cb5ddde" class="">But provide an obvious way to find it again via Visible Structure or Version Control. </p><h2 id="30628d33-7a1c-4e5a-8bca-edda4dc5b4c8" class="">Ubiquitous, scopeable search</h2><p id="81a58bc6-4689-449e-af66-b94c78912e8c" class="">
+</p><p id="4a4b88ee-6b2c-48a3-b17d-91e7e2489137" class="">
+</p><p id="73355be0-e41b-45b8-ad0c-737764b68a42" class="">When navigating deeply nested information hierarchies, we often need to </p><p id="2113691b-d5c4-4c54-9802-7efd18a0288e" class="">
+</p><p id="6ae30cf8-87a8-454d-b9ad-aa53e105541f" class="">Therefore:</p><p id="32d93a4f-cc3b-4241-a741-8fbe34e84641" class=""><strong>Allow any string to be searchable in the system. Make it scopeable over a particular portion of the graph to control the results. Allow results to be shown in-context.</strong></p><div id="34838669-02f8-4401-8509-5ef6a134d27b" class="column-list"><div id="37489678-1a7a-46d4-b86b-70fa33792af0" style="width:50%" class="column"><figure id="ba1a3d95-447d-49a7-a1b2-f937cc1ca33e" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%202.png"><img style="width:240px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%202.png"/></a></figure></div><div id="89ee3fe8-ea07-405a-ba40-ed215ce9d504" style="width:50%" class="column"><figure id="ed6ed495-8aaf-4c50-a0bb-ed6a57099094" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%203.png"><img style="width:240px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%203.png"/></a></figure></div></div><p id="a464e7ed-4466-4b72-97e6-55f5fc4ed474" class="">Search should apply over the available actions/commands too(with a means to filter them(this suggestts a need to be able to quickly point to just the actions of a card-object)):</p><figure id="ede5a364-e461-4ad5-ba7f-c070f3b7f704" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%204.png"><img style="width:480px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%204.png"/></a></figure><p id="9a8dd422-8604-4dba-a38b-8b78a233f806" class="">Notes:</p><ul id="ca7d2b0d-a733-4cfd-b923-66bca40e280c" class="bulleted-list"><li style="list-style-type:disc">Examples: rga, which works anywhere in a directory hierarchy.</li></ul><ul id="6aaace68-1776-42f2-b56c-71abce687ad2" class="bulleted-list"><li style="list-style-type:disc">The way I use search in this very Notion document reflects this. If each pattern were its own page, I couldn&#x27;t scope the search by the page, making it feel disjointed.</li></ul><ul id="9fc0026c-7b1c-4411-95a6-7e1e589c748d" class="bulleted-list"><li style="list-style-type:disc">how do you select a scope? How do you understand that a selection might be applied deeply to a hierarchy. How do you understand that a scope might be over a graph, and that there is a depth to such a graph and that there is a limit to this depth.</li></ul><h2 id="a705bbdb-cb1f-4f02-a7cc-edf31872e673" class="">Scopeable Actions</h2><h2 id="25d3c522-28c8-4fa5-944e-09f91ba71697" class="">Reflection</h2><p id="6cd29722-8270-42f1-a8b5-384d5e2903c9" class="">Elements should expose the commands they have available.</p><h2 id="2c77ec5d-39c7-41a4-9a26-cb4c838e1991" class="">Draw everywhere</h2><p id="35f083a8-1986-4f25-9a91-3c6722c1f673" class=""><a href="https://szymonkaliski.com/projects/hhann/">https://szymonkaliski.com/projects/hhann/</a></p><h2 id="bf77d230-5d07-453b-86ba-31ab4ac78116" class="">Version Control*</h2><p id="40c128f9-dc5b-4bc8-a610-4aa12e0abd5b" class=""><a href="https://szymonkaliski.com/notes/handling-history-in-software/">https://szymonkaliski.com/notes/handling-history-in-software/</a></p><p id="ab3b24e2-31a4-4c23-8986-109b27b3795f" class="">
+</p><p id="46443a0c-a009-40ee-8b3d-ba7c36d7c496" class="">
+</p><div id="953c6d1b-7988-46ed-b8af-17fcc400bc41" class="column-list"><div id="2a5be771-13ef-406f-9101-77e2498e82f5" style="width:25%" class="column"><figure id="75d16fe4-28f3-4513-a6d0-dc160f3e2b22" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%205.png"><img style="width:240px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%205.png"/></a></figure></div><div id="4db24973-7bda-4f5b-822a-ce38d2cb8551" style="width:25%" class="column"><figure id="fc3e3339-4727-47dc-9393-e4ba5f7e3f47" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%206.png"><img style="width:2116px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%206.png"/></a></figure></div><div id="ef317b64-6a1a-4c80-99b5-dc9ecf94dd8e" style="width:25%" class="column"><figure id="537f9f7c-0c0f-4de2-95c4-faff7b79d644" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%207.png"><img style="width:1920px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%207.png"/></a></figure></div><div id="a9e245b5-9a63-4218-9165-4e6697fd1c8c" style="width:25%" class="column"><figure id="96d0710b-3554-4d29-ace9-21f82d8910e4" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%208.png"><img style="width:344px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%208.png"/></a></figure></div></div><p id="c7eb3cb3-7060-4b3c-8c9b-3c3c6eb3e285" class="">
+</p><h2 id="b98873b4-7f79-4a70-b8a6-9e5da69b6e57" class="">Appropriate Contrast Ratios*</h2><p id="272f58d2-f977-47ac-bebb-d998bc1f58a0" class="">
+</p><figure id="0fa13b6d-4e39-4b93-815c-86058f8b0a82" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%209.png"><img style="width:336px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%209.png"/></a></figure><h2 id="235164c4-0725-481f-b22a-e2ff78efedcf" class="">Unlimited Undo**</h2><h2 id="ad8e1c0b-a6db-42f8-a484-dce876b691b9" class="">Access Controls*</h2><h2 id="47802afe-3e06-4ba0-bf74-f58b23374297" class="">Links</h2><p id="b5e9af0b-8116-4cee-b61f-0afb48a11eaa" class="">Combine with deep addressability.</p><p id="1e43fac2-87bf-4665-afb2-9d3550324256" class="">Links create connections, connections create resilience. New elements can be softly absorbed into the system and made continuous with it via linking. Like Alexander&#x27;s basket, the load of new information, tasks, and external events can be distributed throughout the network structure, rather than concenttrating them inside of a todo list, where they will cause uneven point-wise force(think of a needle) on your digital fabric.</p><p id="a3657087-e906-4442-9793-8029185c780f" class="">
+</p><figure id="4be7e440-ab3f-4f6b-9a2e-23ad6f857afb" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2010.png"><img style="width:4032px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2010.png"/></a></figure><h2 id="4909be60-90cc-4519-b18c-b1eb9fd784e1" class="">Deep Addressibility**</h2><h2 id="3f5cf3b7-9296-42c4-8b97-75b51b631f3d" class="">Zooming User Interface*</h2><h2 id="9e7a7d68-d0af-4365-bc19-8db35fdcbbb0" class="">Ubiquitous Embedding**</h2><p id="63f18c31-3ade-4660-9140-0c753e2f3f0c" class="">See: Notes Anywhere</p><p id="053b37b5-5842-4a75-bede-d79873a40e7e" class="">
+</p><figure id="6b6b1cbe-47fe-4cdc-b5d5-3cf21b59d737" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2011.png"><img style="width:288px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2011.png"/></a></figure><p id="81599508-f5b0-41e2-8f3f-158916de1852" class="">Naming everything is exhausting. Sometimes we just need to point to things.</p><h2 id="85895e73-fec5-4fa8-9ccb-99007f782696" class="">Provenance Trails**</h2><h2 id="bf876610-051f-4aea-b23b-46a994a08c47" class="">Small Code**</h2><h2 id="857cba47-7e07-4341-92ad-6e3f366a6291" class="">Plain and Friendly Language**</h2><h2 id="80ee9f7a-7df4-4837-bcc1-bc4f3b1d74cc" class="">Blameless Error Notifications**</h2><h2 id="0d8ab8ee-ff17-4889-9235-9ad206c04458" class="">Dynamic Arrangements**</h2><p id="56656dfb-7ffa-4bac-b974-1072f4be587e" class=""><strong>People develop ideas through connections. When solving problems, they need to see multiple things at once.</strong></p><p id="d2e2717b-1cfc-4c18-9b86-71c04a462fa2" class="">Notes: Unflattening simultaneity, comics</p><p id="c2494eac-f9aa-4d16-b4c6-439949220290" class="">Therefore:</p><p id="8234b68b-9083-405a-b3d5-caea09910474" class=""><strong>Allow any element of the system to be placed next to another element.</strong></p><p id="889cb4ae-ab33-4d12-9b89-95adb419aa14" class="">This can be accomplished via Ubiquitous Embedding, or any of the window managers:  a Tiling Window Manager,  a Scrolling Window Manager</p><h2 id="e353ac65-a0cb-40f1-b4dc-ed69766cbd17" class="">Instant Publishing**</h2><h2 id="2656e26d-c06e-47d3-bf6a-ff94505aef91" class="">Multiplayer Mode**</h2><h2 id="8aae0819-d31e-48c5-9b3e-aa9c995901db" class="">Extremely Late Binding**</h2><h2 id="1575b2c1-6bd5-4a28-ab84-0211af7aae08" class="">Disjoint Versions Living Harmoniously**</h2><p id="d3de015f-e2b6-4ebb-be37-9836323692f7" class=""><a href="https://gist.github.com/pvh/6dd6f66c17f89e2a686f5b3026b7784f">https://gist.github.com/pvh/6dd6f66c17f89e2a686f5b3026b7784f</a></p><h2 id="a3fa7d5d-eae0-44c4-b139-61d0e028e211" class="">Customizeable Spelling Dictionaries</h2><figure id="0d988ee9-f67b-477b-a54e-b5d2c94e489c" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2012.png"><img style="width:696px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2012.png"/></a></figure><h2 id="a7b1c531-c002-4c45-98e2-bc9d46707358" class="">Collapsable Elements</h2><h2 id="30ca77a7-1ace-4ea7-9792-1ca1b81c837a" class="">Consistent Drag and Drop</h2><p id="127fa7bc-bede-42fa-ba7f-ff050808e7bc" class="">Also make sure to visualize the drag and drop.</p><div id="43b08438-cdef-4ac3-9536-61e5579275ca" class="column-list"><div id="adf251b1-d156-43bd-8919-1c0de821660c" style="width:50%" class="column"><figure id="1f3c8a1c-f175-43f3-9b12-0d8fc693200d" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2013.png"><img style="width:3360px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2013.png"/></a></figure></div><div id="645017e0-3e7f-483a-843b-67ebe0803a4f" style="width:50%" class="column"><figure id="afea4bca-7ceb-4bee-8461-6079fe8b999f" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2014.png"><img style="width:3360px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2014.png"/></a></figure></div></div><p id="e00b837f-e775-444f-a3d1-6a815b66ddd6" class="">
+</p><h2 id="1186e412-405f-42f4-9907-e2dd9d1c6c90" class="">Multiple Composable Window Managers*</h2><h2 id="746027bf-946c-47c7-a926-aa9b0196b4c8" class="">Tiling Elements</h2><h2 id="d78a2f32-93bb-4143-95da-cbf3a17116b8" class="">Scrolling Elements</h2><h2 id="1f364657-f337-4003-9036-b087ec0d9ed2" class="">Visible Structure**</h2><p id="d894d162-4a72-4347-a15e-6de7360b0532" class="">Use with Multiple Representations</p><figure id="d61cf700-6f4b-489c-972f-e9d52b97b6dd" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2015.png"><img style="width:1199px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2015.png"/></a></figure><figure id="ebf95429-f1ef-49bc-91eb-39235126b294" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2016.png"><img style="width:240px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2016.png"/></a></figure><h2 id="d11f6441-555d-467e-80dc-bffb8978d9d2" class="">Direct Manipulation*</h2><h2 id="f719768f-1968-4301-b560-376dc270c78f" class="">Notes Anywhere*</h2><p id="4762ea77-49e9-4803-aff3-afc7a11d597d" class="">Make sure they&#x27;re searchable with search anywhere.</p><p id="e4e39436-9409-4c24-ac88-58ccbaebfee8" class="">
+</p><div id="76c68911-de86-4519-a871-e021349ce7ff" class="column-list"><div id="3e8656bd-9fa7-4f72-9462-77165876ac8c" style="width:50%" class="column"><figure id="3e6c3f3f-d109-4149-acb7-f2956dccdd86" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2017.png"><img style="width:336px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2017.png"/></a></figure></div><div id="fa2ef88e-b13e-4be6-ba7b-da356a8757e8" style="width:50%" class="column"><figure id="1a4750ce-82c6-48ee-b9df-d77950b8953f" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2018.png"><img style="width:192px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2018.png"/></a></figure></div></div><h2 id="257d5a2b-a7b9-4a68-a916-65241c9b5daa" class="">Multiple Representations**</h2><p id="74496735-8fd2-4394-9c37-6616fce6da89" class="">Can use backlinks to point back to where they came from.</p><p id="f86b0659-13cf-41f7-b2d9-a73893ac0920" class="">Can use sidelinks if we consider the representations to be part of a List of representations of the original Object.</p><h2 id="aa7419a0-d87c-4781-bf72-b6c44a3d74bc" class="">Customizable Keyboard Shortcuts*</h2><h2 id="278f68f0-e024-4ab9-ba2c-874ac761f123" class="">Streaming Pipes**</h2><p id="19924638-6282-4bbe-92c6-adc0e6121827" class="">I ought to be able to stream the contents of a Notion node into Figma.</p><p id="f9890a05-0210-46ff-952d-f72fef862d49" class=""><a href="https://twitter.com/geoffreylitt/status/1179134469770334208">&quot;I&#x27;ve now realized that the software tweak I want is for Twitter to give me a little export of all the responses in this thread, so I can catalog them better&quot;</a></p><p id="553d4875-cad3-4350-929d-c7a3dde26ad7" class=""><a href="https://github.com/mawww/kakoune/blob/master/doc/design.asciidoc#composability">https://github.com/mawww/kakoune/blob/master/doc/design.asciidoc#composability</a></p><p id="49db0b12-d7ce-4428-a1ae-e759ab91c2e7" class="">Made visible by: Visible Structure, Multiple Representations</p><h2 id="983c4936-60a4-464d-8e52-a386278c30e5" class="">Command Palette*</h2><p id="dfd15cae-2fa2-47f0-a165-eeb1414115ee" class="">Use Reflection to find the commands available:
+<a href="https://github.com/p-e-w/plotinus">https://github.com/p-e-w/plotinus</a></p><h2 id="f3d698a9-1165-4e21-9141-220cf004af23" class="">Backlinks**</h2><h2 id="f93212c1-6e6f-4ed7-9961-21af353f47f7" class="">Live Programming**</h2><h1 id="def47ee8-1fa8-4723-b41f-b49a793275d6" class="">Potential Patterns</h1><h2 id="a3425bee-f71a-4681-98e6-63cd0d516ad8" class="">Breadcrumbs</h2><p id="bc4e8a60-6f78-4c50-85e5-e133c55d380c" class="">Force: forgetting/losing context vs. the need to know where you are. </p><h2 id="e74da38e-b231-4ee5-afe3-00f51b7f0e29" class="">Batch Actions</h2><p id="789a4e60-6588-433b-bbac-4a5bfd0cbf2d" class="">Any action you can apply to a single item should be possible to do on multiple items. If the set is disjoint, group the actions first by the actions that are common to all items, and then show each group of actions  next to a representative preview of the group.</p><h2 id="7d3beaac-e631-494c-a46e-e04010ab0287" class="">Replace/Map/Filter</h2><p id="728b5f42-efa1-4bbc-b69c-60c0a8aaeca6" class="">Consider Kakoune&#x27;s approach to find and replace: rather than having a special &quot;find and replace&quot; command, we are given a &quot;find&quot; command, that given a string creates a list of selections, and a &quot;replace&quot; command, that given a list of selections, mutates them in place. Can we do something similar in this system, where users are given these generic tools to use?
+
+And scoping: is this a kind of selection?</p><p id="bd797748-6979-4ca3-ba44-dc817d972a12" class=""><a href="https://twitter.com/yoshikischmitz/status/1309648874257039360">https://twitter.com/yoshikischmitz/status/1309648874257039360</a></p><h2 id="6cde8f80-0111-4ce8-a0ea-f1c7dc91a63b" class="">Workspaces</h2><p id="71e2d6ca-1fb2-4f41-a965-a98345a53b11" class="">
+</p><p id="e31984e9-878e-44e3-808c-94fb468ebf1c" class="">
+</p><div id="70738e94-8900-4b3a-8ec3-b1dd6a3b70e6" class="column-list"><div id="4752a972-06fc-4d48-ad62-6246853a0ee7" style="width:50%" class="column"><figure id="1c57c924-3626-48e2-88b9-7ff32074e1dc" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2019.png"><img style="width:1874px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2019.png"/></a></figure></div><div id="3ba96c4a-a779-4b97-a949-f87f0867b209" style="width:50%" class="column"><figure id="c497534b-25b4-4a30-889a-138a3a77b952" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2020.png"><img style="width:1514px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2020.png"/></a></figure></div></div><h2 id="1d339caa-fa24-4382-a46c-193ce23cd6f3" class="">Continuous Chain of Action</h2><p id="27d77884-644b-492d-abc0-b000c9d45fba" class="">Interruptions disrupt us, removing us from </p><h2 id="ba62af79-5385-41ae-b079-2580ba0a3461" class="">Local Copies</h2><p id="ca3ac316-5a90-4fdd-ada0-8a743abdb7f1" class="">
+</p><p id="c9f3cff8-1ee5-4fd2-a208-a4d9d7c5b88d" class="">To prevent link rot.</p><h2 id="467ce63f-80df-4fcc-a56e-ba4cf1b767f9" class="">Going back</h2><p id="d9b095a9-9791-438a-9bf2-f902df7234a7" class="">Ctrl+O in VIM. See also my tweets about Notion vs. Bear.</p><h2 id="20b135c0-19f2-4386-9373-d0981293f048" class="">Multiple Devices</h2><p id="fad5fc18-9f02-4300-a05f-53adddb6b55c" class="">What are the forces a work here?</p><p id="6029bb48-f050-430c-96d2-f67b9c32c0ce" class="">Provide many views of objects so they can be seen on your mobile device.</p><p id="79abad1e-ff45-46b1-ad40-7e670d97bc5b" class="">See: Embedding, Multiple Representations</p><h2 id="29aab2b0-f53c-4cef-b8ef-f1d52626587c" class="">Fast Search</h2><p id="7b3e7058-f2b9-442a-9561-70e220b70a0c" class="">
+</p><p id="1aeb72b8-63d5-494f-8579-ab4b59e93317" class="">Notes:</p><ul id="e4a65db3-079d-4629-b0ce-b770dc2cc547" class="bulleted-list"><li style="list-style-type:disc">maybe this could be expanded into a larger pattern about speed?</li></ul><h2 id="2e55184e-457b-46ff-9feb-7f0d7e5df30a" class="">Ubiquitous Mentions</h2><p id="1302694b-cb03-4235-9bcf-12bc64783f6c" class="">A kind of sub-pattern of Ubiquitous Embedding or Transclusions. Mentions are transclusions of names.</p><p id="30b8d3fc-2118-4ba0-88e4-eec76fb5d3ec" class="">See also  </p><h2 id="0285f765-266b-4890-ae64-79ba53dd6c87" class="">Visible Modifiers inside of Modes and Quasimodes</h2><p id="4ec94707-73b9-4eea-9199-42da30d22c21" class="">
+</p><div id="c291ecf2-1e2a-45c1-961c-1c1f84f3b37f" class="column-list"><div id="0ef3bba6-e3c3-41d1-b078-055344ee0b6f" style="width:33.333333333333336%" class="column"><figure id="3e76f240-17be-4e6e-94c6-05a5d68511d7" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2021.png"><img style="width:1626px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2021.png"/></a></figure><p id="004ddd54-db1f-472c-8d61-8e0a0fe6b0bd" class="">
+</p></div><div id="239598d6-81ee-4393-92d0-6aeead30c468" style="width:33.333333333333336%" class="column"><figure id="84352404-a7d3-4834-9dc7-6d864d9c648e" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2022.png"><img style="width:1416px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2022.png"/></a></figure></div><div id="185ac7b5-558d-47c0-add1-fd3235d15bd2" style="width:33.33333333333333%" class="column"><figure id="d0689adb-4520-4b73-a67e-14b7faaeb3f5" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2023.png"><img style="width:1200px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2023.png"/></a></figure></div></div><p id="b0d6d672-6d80-4b46-8c6a-4809f24e5eff" class="">If I&#x27;m dragging a window, and there are keyboard commands avail. to me, show me those.</p><p id="63545d5e-5dae-4baf-90ca-aee0efa7c7b0" class=""><a href="https://twitter.com/yoshikischmitz/status/1311115683640438785">https://twitter.com/yoshikischmitz/status/1311115683640438785</a></p><p id="b572a169-bc36-40b0-a259-82aff729058c" class=""><a href="https://twitter.com/jackrusher/status/1311207824635105280">https://twitter.com/jackrusher/status/1311207824635105280</a></p><h2 id="d0b7d3c2-678d-4573-807d-d9dc0f12bce4" class="">Gradually Fading Training Wheels</h2><h2 id="5157bd5d-586b-4701-a1f7-1e9ec05e8fb5" class="">Lightweight Processes</h2><p id="47fc0efc-7e81-42b3-bceb-6991e2f7de73" class="">
+</p><p id="19f59da9-7731-49e4-85f2-dc4627b85de4" class="">I should be able to create so many more Notion windows than I can - but I can&#x27;t, because each one takes up hundreds of MB of memory. My computer only has 16GB of memory - most only have perhaps 4-8GB. It&#x27;s impossible to have our thoughts flow freely if we are simultaneously being our computer&#x27;s task manager.</p><p id="3ff910fb-36e0-4e05-910d-ae6d3e5601a1" class="">
+</p><p id="6681c6b6-a1f2-4391-bdad-338c74cbb043" class="">Note:</p><ul id="0eb2af6b-1ac4-450f-b632-5b968bb1498f" class="bulleted-list"><li style="list-style-type:disc"><del>Maybe an alternate title is Lightweight Processes.</del></li></ul><ul id="1df7ff5d-ae1b-4d2a-9e23-0102d10afdbb" class="bulleted-list"><li style="list-style-type:disc">renamed to Lightweight Windows</li></ul><h2 id="475e9dcd-5e88-4a87-94c1-5301a9da2d12" class="">Visible Performance Indicators</h2><p id="96cd9543-510e-40ec-84d4-b6a4258df3a0" class="">Give people fine-grained visualizations of performance issues. Have an escape hatch for when a process is taking up more than it should.</p><h2 id="6ffad9b1-aa1a-4860-a32f-11368cd257b8" class="">Inbox of Changes</h2><p id="15d2f31b-3fba-4979-966a-0290d0d63d57" class="">Make sure they can Hide Any Element so they</p><h2 id="81928e1a-8241-4543-a97e-e7d0d2c2d806" class="">Version Control For Settings Pages</h2><p id="497896ec-a43a-45c8-979a-2a9e64141701" class="">A specific combination of ubiquitous version control and backlinks that feels worth calling out.</p><p id="a9c43435-ed67-4bab-ab38-64f6af20a1d2" class=""><a href="https://www.goldfiglabs.com/">https://www.goldfiglabs.com/</a></p><h2 id="e77f85a3-1b14-4db9-8e6a-d53a8c5c0bfa" class="">Detailed Activity Logs</h2><p id="c044ec9f-bd38-4e19-b76e-3ac90a755437" class="">See version control</p><h2 id="adbc4650-65c7-4eb8-a13a-2295b0b46747" class="">Screentime Control</h2><h2 id="51890564-13ed-4a3b-966c-452bd4a54fc0" class="">Kanban boards</h2><p id="7f03b919-9635-42a5-84f9-ba6de7e0e7c6" class="">There&#x27;s something wonderful about these.</p><p id="4d56cc96-5904-4e29-a5de-141f508c62d2" class=""><a href="https://twitter.com/NanoRaptor/status/1281790133507780608">https://twitter.com/NanoRaptor/status/1281790133507780608</a></p><h2 id="6b7945e1-8815-44aa-a269-739831191e44" class="">Objects shouldn&#x27;t suddenly move</h2><p id="94ad513e-7e51-48d7-864a-c982a3481d01" class="">At first tycho-epoch was the 4th item, until I clicked play, when it immediately jumped to the top of the list. That felt weird, I felt no anticipation of what will happen when I clicked play. Maybe hovering over play should show me what&#x27;s about to happen? Maybe it should react more slowly?</p><figure id="88fa26b8-d234-4aab-9f17-83da1d7f3c97" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2024.png"><img style="width:1742px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2024.png"/></a></figure><h1 id="4c076cff-c721-431e-8dc0-7b63e14e4bfa" class="">Prior Art</h1><p id="f0286cdc-6710-427f-8054-35d453a6fe47" class=""><a href="http://www.maplefish.com/todd/papers/Experiences.html#Garden%20of%20Windows">http://www.maplefish.com/todd/papers/Experiences.html#Garden of Windows</a></p><p id="60203d4c-a996-426f-87bd-ef6d607f4c3d" class="">
+</p><p id="89471e39-3d39-48bf-924a-9a3e814f112e" class="">
+</p><p id="45e242d2-de1d-45db-8865-68b0ad91b804" class=""><strong>Modals like this shouldn’t exist</strong></p><p id="fe17e887-02f5-4452-b106-f6d91eae78c1" class="">They create discontinuities of flow</p><p id="52424e62-37a9-4e5c-b29a-5b7285a692bb" class="">
+</p><p id="bcb14c16-bdfe-4f40-bf28-2be2402f4944" class="">
+</p><figure id="2d324156-2a50-4697-a89c-045acda16e42" class="image"><a href="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2025.png"><img style="width:786px" src="A%20Pattern%20Language%20for%20Interfaces%20f8b4a0f00c82403e87fa9bbc954ec86c/Untitled%2025.png"/></a></figure></div></article></body></html>

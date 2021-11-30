@@ -1,0 +1,668 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Gayagaya Log 2</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+}
+
+.simple-table-header {
+	background: rgb(247, 246, 243);
+	color: black;
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(145, 145, 142, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(187, 132, 108, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(215, 129, 58, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 148, 51, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(108, 155, 125, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(91, 151, 189, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(167, 130, 195, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(205, 116, 159, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(225, 111, 100, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="684499a8-ce95-4eed-917c-f17ae3f00612" class="page sans"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_william_morris_1878.jpg" style="object-position:center 0%"/><h1 class="page-title">Gayagaya Log 2</h1></header><div class="page-body"><nav id="38c6c280-72ba-4e37-98f2-4217c3ae5fe2" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b0828d02-5076-4cf7-8995-e730e7e319e4">Current Interface</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2bc98677-0d6a-4986-887c-5c8989bcc146">Progress so far:</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e3b40021-3fa4-48e4-9f9a-60b3b3dac1a4">Slightly nicer design:</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b4c29b64-c8c9-4ec1-856e-98e5bc325e8e">Aesthetic Update</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bcfc0ace-bc10-4560-ad7c-9a52cc874caf">Quote Tweets</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c78bbd07-4870-423a-aacf-4718d795f677">Embedding windows inside of windows. </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#65121f8f-11cc-4471-ae73-a13e59855b04">Got Figma embeds working
+</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#bb74214f-5c71-45db-a700-b548aa90a115">Got absolutely basic persistence working.</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#5776c8aa-0af7-4529-8a38-4b06a7b6a820">Outstanding unknowns</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#46524685-80e9-4e09-a749-0b5f41d0d510">Viewing multiple pages at once + Formula component</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7b826f9a-f7a0-4b0f-9852-dc21cb0e8813">Windows as cards?</a></div></nav><h1 id="b0828d02-5076-4cf7-8995-e730e7e319e4" class="">Current Interface</h1><p id="f1e4d68d-c807-438e-badb-95d520578a97" class="">
+</p><figure id="4d8aecca-b0f3-4525-bab5-083371bed286"><div class="source"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/gayagaya-demo.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1d875949-307e-4970-ba71-c7513fcbb28b/gayagaya-demo.mov</a></div></figure><p id="ca59d99f-b897-488e-9876-92b67ba9789c" class="">
+</p><figure id="becfe96e-b3be-4f5a-b3af-c5cc0d394a34" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled.png"><img style="width:1680px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled.png"/></a></figure><h1 id="2bc98677-0d6a-4986-887c-5c8989bcc146" class="">Progress so far:</h1><p id="6e2cb6b1-ab5f-4785-8d4d-6cba6f0cd336" class="">Keeping track of progress.</p><p id="f3c8274b-b621-4822-9ace-654ef40573a3" class="">
+</p><p id="f53337f3-2155-4aed-abe6-2a32dc66f36c" class="">Basic data model working for a single window:</p><figure id="fe0a7678-b911-44cf-8985-f5281368caad"><div class="source"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Screen_Recording_2020-06-11_at_15.05.07.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e58b812b-3fba-49e0-94a2-9cc32aa38e4b/Screen_Recording_2020-06-11_at_15.05.07.mov</a></div></figure><p id="acca0fe4-2b74-4fd9-a042-e6843f658dc1" class="">Slightly nicer design, nicer components using draft.js and Redux&#x27;s json inspector. Wrapper component to label components:</p><figure id="9fe7dfa0-30bf-4cff-a9a7-7fdb467185e8"><div class="source"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Screen_Recording_2020-06-12_at_10.54.48.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a8af8e01-979d-4e90-b3a2-800f9095e55b/Screen_Recording_2020-06-12_at_10.54.48.mov</a></div></figure><h2 id="e3b40021-3fa4-48e4-9f9a-60b3b3dac1a4" class="">Slightly nicer design:</h2><figure id="c2bc3b29-f283-4437-9af1-465e3c077678" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%201.png"><img style="width:2886px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%201.png"/></a></figure><figure id="8cc71b8f-d9a9-4a60-8c34-1e5f04e8ad17"><div class="source"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Screen_Recording_2020-06-20_at_00.00.29.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/498309ee-36ff-4b0b-8611-8342009946ee/Screen_Recording_2020-06-20_at_00.00.29.mov</a></div></figure><h2 id="b4c29b64-c8c9-4ec1-856e-98e5bc325e8e" class="">Aesthetic Update</h2><p id="4a72a557-2717-42c3-9760-d30d603c3cb3" class="">Feeling very happy with the aesthetic right now:</p><figure id="aa91ed18-a63b-42c8-9e49-6c33528ff14c"><div class="source"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Screen_Recording_2020-06-20_at_00.22.49.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e5d907b3-c9ff-4144-b476-880c8f288e3e/Screen_Recording_2020-06-20_at_00.22.49.mov</a></div></figure><h2 id="bcfc0ace-bc10-4560-ad7c-9a52cc874caf" class="">Quote Tweets</h2><p id="dcecc300-1ded-41c6-8af4-33df8ca26ca7" class="">
+</p><figure id="da41bf3e-6079-4b17-bd1a-cddd5d8959de" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%202.png"><img style="width:3360px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%202.png"/></a></figure><p id="4fbfd87a-ed10-4bc4-883c-07d20f8459a3" class="">This is kinda neat, you can embed a Textarea inside of h3 tags and style it as you like:
+</p><figure id="bca8f634-0ba8-4fce-bd43-728f20ce8f81" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%203.png"><img style="width:1170px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%203.png"/></a></figure><p id="d71f65db-58bc-4974-ab4d-97eeb01493d4" class="">Using the ID and Inspector tags to inspect data in other windows:
+</p><figure id="44f750e4-a501-46b7-bbfd-17bf1c678bdc" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%204.png"><img style="width:1712px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%204.png"/></a></figure><h2 id="c78bbd07-4870-423a-aacf-4718d795f677" class="">Embedding windows inside of windows. </h2><p id="105a051e-d6e9-478e-8062-fe4145eedf35" class="">Fixed the weird draftjs issue where the last instance would keep stealing focus:</p><figure id="c7a60c08-2252-4a18-95a3-e2230194b4cd" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%205.png"><img style="width:1872px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%205.png"/></a></figure><p id="70b7f7b0-c99d-4067-9544-d33863d83a52" class="">Next:</p><ul id="8754d107-6a45-4b25-807b-b4ff4da8fef3" class="bulleted-list"><li style="list-style-type:disc">use <code>createFromBlockArray()</code> , getEntityMap(), and getBlocksAsArray() for persistence.
+Strategy:  on each change, get the entity map and block array. Send them to storage, where they&#x27;ll be persisted. </li></ul><p id="051f4a53-b295-4c28-b3e8-ee8444041e75" class="">
+</p><h2 id="65121f8f-11cc-4471-ae73-a13e59855b04" class="">Got Figma embeds working
+</h2><figure id="108d3c9d-bdb3-4302-8804-693c712c6469" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%206.png"><img style="width:2600px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%206.png"/></a></figure><h3 id="bb74214f-5c71-45db-a700-b548aa90a115" class="">Got absolutely basic persistence working.</h3><p id="22e7284d-1789-4599-9854-6f07ffb38e9c" class="">It&#x27;s so hacky.</p><h3 id="5776c8aa-0af7-4529-8a38-4b06a7b6a820" class="">Outstanding unknowns</h3><ul id="78fd34ee-a6a4-41b9-a7c4-43d2cb31d61b" class="bulleted-list"><li style="list-style-type:disc">How will adding new threads work?</li></ul><ul id="ca8438ac-d044-4aee-b271-d7b0eb14c1de" class="bulleted-list"><li style="list-style-type:disc">How will mentions + titles work?<ul id="819f305e-c89f-48a8-b430-b5e875e4d2ba" class="bulleted-list"><li style="list-style-type:circle">I think, to do mentions, we need to save block and entity maps?</li></ul><ul id="504bf1ae-0ffb-4690-86e1-192e1c4a1df0" class="bulleted-list"><li style="list-style-type:circle">As a first pass on titles, maybe the title component can just write the uuid → title pair to the kv store?</li></ul></li></ul><ul id="268b7851-7701-4ee8-b076-20549740dd81" class="bulleted-list"><li style="list-style-type:disc">How will videos work?<ul id="d3f96ce5-f2e7-45ad-a2ba-468831c2bd86" class="bulleted-list"><li style="list-style-type:circle">To add videos, base64 won&#x27;t cut it.</li></ul><ul id="5de889ae-101f-45f5-90cc-377747fc07f3" class="bulleted-list"><li style="list-style-type:circle">Could I store the media elsewhere and quickly embed it?</li></ul><ul id="a0de54d7-7a50-4a84-ba72-b59eb2903a15" class="bulleted-list"><li style="list-style-type:circle">To do videos right, I would need drag and drop too.</li></ul><ul id="e1689d7c-44f7-4702-8267-39968762f6c8" class="bulleted-list"><li style="list-style-type:circle">A very, very hacky solution would be to </li></ul></li></ul><h2 id="46524685-80e9-4e09-a749-0b5f41d0d510" class="">Viewing multiple pages at once + Formula component</h2><p id="bcd31d4a-8138-4252-8c18-60b3214978b2" class="">I continue to be delighted by how natural it feels to extend this system. As you can see in the screenshot, I added a Formula component that exposes a larger text editor. Other windows can be pointed to it, allowing for a very crude form of symbols.</p><figure id="c8778770-d0dd-4855-8ecd-154770f99eec" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%207.png"><img style="width:3360px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%207.png"/></a></figure><figure id="24420ceb-dd60-48f8-b0ec-28137572e949" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%208.png"><img style="width:432px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%208.png"/></a></figure><p id="daba75dc-0e31-4409-b62b-78f2ea537801" class="">
+</p><p id="b1034125-31e3-4af4-a23a-fb636575f16c" class="">I also added a component to my Textarea component that previews image URLs. I like it.</p><figure id="5522319b-9f28-4a06-a4e7-65acb8016ce5" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%209.png"><img style="width:528px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%209.png"/></a></figure><p id="60a3f787-573a-4fbb-9472-b75c7fffcea3" class="">Playing around w/ different styles:</p><figure id="fee56a14-54d6-48d6-a64d-cbd770124dec" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%2010.png"><img style="width:2828px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%2010.png"/></a></figure><h2 id="7b826f9a-f7a0-4b0f-9852-dc21cb0e8813" class="">Windows as cards?</h2><figure id="ec5c7e1e-8d0d-46b9-a4ed-30251af0f444" class="image"><a href="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%2011.png"><img style="width:3360px" src="Gayagaya%20Log%202%204d8aeccab0f34525bab5083371bed286/Untitled%2011.png"/></a></figure><p id="b46b755a-6d0d-4571-b2c7-890eaab7db56" class="">In any case, all of these options will be realizeable w/ late-binding!</p><p id="ea6140d2-e561-4760-8a0f-bbf8c86a806f" class="">I like the idea that for some threads, I want to emphasize the separatedness of elemens.</p><p id="471aead2-810d-4213-b8b0-1efcaf0bc5a9" class="">
+</p></div></article></body></html>
